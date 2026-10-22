@@ -1,0 +1,209 @@
+/*
+ * Odin Wiki — Dark Theme
+ *
+ * A dark, low-contrast theme designed for reading Odin language documentation
+ * and vendor function references. Not white — deep charcoal and slate tones
+ * with accent colors drawn from Odin's branding.
+ */
+
+/* ── Root variables ── */
+:root {
+  --bg:             #121417;
+  --bg-panel:       #1a1d21;
+  --bg-elevated:    #212429;
+  --fg:             #e8eaed;
+  --fg-muted:       #9aa3ad;
+  --fg-dim:         #6b727d;
+  --border:         #2c3138;
+  --border-focus:   #4a6fa5;
+
+  /* Odin-inspired accent */
+  --accent:         #5b8def;
+  --accent-hover:   #7c9ef2;
+  --accent-dim:     #2d4a7a;
+
+  /* Syntax highlighting (dark) */
+  --syntax-keyword: #ff7b72;
+  --syntax-func:    #d2a8ff;
+  --syntax-string:  #a5d6ff;
+  --syntax-comment: #8b949e;
+  --syntax-type:    #ffab70;
+  --syntax-attr:    #d2a8ff;
+  --syntax-tag:     #ff7b72;
+
+  /* Status colors */
+  --ok:             #3fb950;
+  --warn:           #d29922;
+  --err:            #f85149;
+}
+
+/* ── Reset & base ── */
+* { box-sizing: border-box; }
+html {
+  scroll-behavior: smooth;
+  background-color: var(--bg);
+  color: var(--fg);
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  line-height: 1.6;
+}
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg);
+  color: var(--fg);
+}
+
+/* ── Links ── */
+a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+a:hover { color: var(--accent-hover); border-bottom-color: var(--accent-hover); }
+a:focus-visible { outline: 2px solid var(--border-focus); outline-offset: 2px; }
+
+/* ── Layout ── */
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+}
+
+header {
+  padding: 3rem 1.5rem 2rem;
+  border-bottom: 1px solid var(--border);
+  background: linear-gradient(180deg, var(--bg-panel), var(--bg));
+}
+header .site-title {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--fg);
+}
+header .site-tagline {
+  margin: 0.5rem 0 0;
+  color: var(--fg-muted);
+  font-size: 1rem;
+}
+
+/* ── Navigation ── */
+nav {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+}
+.nav-link {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  color: var(--fg-muted);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--bg-elevated);
+  transition: all 0.2s ease;
+}
+.nav-link:hover {
+  color: var(--fg);
+  border-color: var(--border-focus);
+  background: var(--bg-panel);
+}
+
+/* ── Content ── */
+main { margin-top: 2rem; }
+section {
+  margin-bottom: 3rem;
+  padding: 1.5rem;
+  background: var(--bg-panel);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+section h2 {
+  margin-top: 0;
+  font-size: 1.4rem;
+  color: var(--fg);
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0.5rem;
+}
+h3 { font-size: 1.15rem; color: var(--accent-hover); margin-top: 1.5rem; }
+h4 { font-size: 1rem; color: var(--fg-muted); margin-top: 1.25rem; }
+p { color: var(--fg); margin: 0.75rem 0; }
+ul, ol { color: var(--fg); padding-left: 1.5rem; }
+li { margin: 0.4rem 0; }
+
+/* ── Code blocks ── */
+pre {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 1rem;
+  overflow-x: auto;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.875rem;
+  background: var(--bg-elevated);
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  color: var(--syntax-string);
+}
+
+/* ── Syntax highlighting ── */
+.token-keyword   { color: var(--syntax-keyword); font-weight: bold; }
+.token-func      { color: var(--syntax-func); }
+.token-string    { color: var(--syntax-string); }
+.token-comment   { color: var(--syntax-comment); font-style: italic; }
+.token-type      { color: var(--syntax-type); }
+.token-tag       { color: var(--syntax-tag); font-weight: bold; }
+.token-attr      { color: var(--syntax-attr); }
+
+/* ── Tables ── */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  font-size: 0.9rem;
+}
+th, td {
+  border: 1px solid var(--border);
+  padding: 0.6rem 0.8rem;
+  text-align: left;
+}
+th { background: var(--bg-elevated); color: var(--fg-muted); font-weight: 600; }
+tr:nth-child(even) td { background: var(--bg-panel); }
+
+/* ── Callouts ── */
+.callout {
+  padding: 1rem 1.25rem;
+  border-radius: 6px;
+  margin: 1rem 0;
+  border-left: 4px solid;
+}
+.callout-info   { background: rgba(91, 141, 239, 0.1); border-color: var(--accent); }
+.callout-warn   { background: rgba(210, 153, 34, 0.1); border-color: var(--warn); }
+.callout-err    { background: rgba(248, 81, 73, 0.1); border-color: var(--err); }
+.callout-title  { font-weight: 700; margin-bottom: 0.5rem; font-size: 0.9rem; }
+.callout-info .callout-title   { color: var(--accent); }
+.callout-warn .callout-title   { color: var(--warn); }
+.callout-err .callout-title    { color: var(--err); }
+
+/* ── Footer ── */
+footer {
+  padding: 2rem 1.5rem;
+  border-top: 1px solid var(--border);
+  color: var(--fg-dim);
+  font-size: 0.85rem;
+}
+
+/* ── Responsive ── */
+@media (max-width: 640px) {
+  .container { padding: 1rem; }
+  header { padding: 2rem 1rem 1.5rem; }
+  nav { flex-direction: column; align-items: flex-start; }
+  .nav-link { width: 100%; text-align: center; }
+}
