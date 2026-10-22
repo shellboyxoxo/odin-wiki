@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Odin Wiki — Core Syntax</title>
+  <link rel="stylesheet" href="../../theme.css">
+</head>
+<body>
+  <div class="page-layout">
+    <!-- ── Left Sidebar ── -->
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <span class="brand-title">Odin Wiki</span>
+        <span class="brand-tagline">Odin Programming Language Reference</span>
+      </div>
+      <div class="sidebar-search">
+        <input type="text" placeholder="Search…">
+      </div>
+      <nav class="sidebar-nav">
+        <div class="nav-group">
+          <span class="nav-group-title">Getting Started</span>
+          <ul>
+            <li><a href="../index.html" class="nav-link">Home</a></li>
+            <li><a href="../getting-started.html" class="nav-link">Getting Started</a></li>
+            <li><a href="../hello-world.html" class="nav-link">Hello World</a></li>
+          </ul>
+        </div>
+        <div class="nav-group">
+          <span class="nav-group-title">Core Language</span>
+          <ul>
+            <li><a href="syntax.html" class="nav-link active current-section">Core Syntax</a></li>
+            <li><a href="types.html" class="nav-link">Types</a></li>
+            <li><a href="procedures.html" class="nav-link">Procedures</a></li>
+            <li><a href="builtins.html" class="nav-link">Built-in Procedures</a></li>
+            <li><a href="memory.html" class="nav-link">Memory Management</a></li>
+          </ul>
+        </div>
+        <div class="nav-group">
+          <span class="nav-group-title">Standard Library</span>
+          <ul>
+            <li><a href="../stdlib/overview.html" class="nav-link">Overview</a></li>
+            <li><a href="../stdlib/fmt.html" class="nav-link">core:fmt</a></li>
+            <li><a href="../stdlib/os.html" class="nav-link">core:os</a></li>
+            <li><a href="../stdlib/mem.html" class="nav-link">base:runtime</a></li>
+          </ul>
+        </div>
+        <div class="nav-group">
+          <span class="nav-group-title">Vendor Libraries</span>
+          <ul>
+            <li><a href="../vendor/overview.html" class="nav-link">Vendor Overview</a></li>
+            <li><a href="../vendor/graphics.html" class="nav-link">Graphics</a></li>
+            <li><a href="../vendor/audio.html" class="nav-link">Audio</a></li>
+            <li><a href="../vendor/physics.html" class="nav-link">Physics</a></li>
+            <li><a href="../vendor/networking.html" class="nav-link">Networking</a></li>
+            <li><a href="../vendor/system.html" class="nav-link">System</a></li>
+          </ul>
+        </div>
+        <div class="nav-group">
+          <span class="nav-group-title">Reference</span>
+          <ul>
+            <li><a href="../reference/format-verbs.html" class="nav-link">Format Verbs</a></li>
+            <li><a href="../reference/operators.html" class="nav-link">Operators</a></li>
+            <li><a href="../reference/keywords.html" class="nav-link">Keywords</a></li>
+          </ul>
+        </div>
+        <div class="nav-group">
+          <span class="nav-group-title">Releases</span>
+          <ul>
+            <li><a href="../releases/dev-2026-10.html" class="nav-link">dev-2026-10</a></li>
+          </ul>
+        </div>
+      </nav>
+    </aside>
+
+    <!-- ── Main Content ── -->
+    <div class="main-content">
+      <header>
+        <h1 class="page-title">Core Syntax</h1>
+        <p class="page-subtitle">Fundamental syntax of the Odin programming language — packages, imports, declarations, blocks, comments, and control flow.</p>
+      </header>
+
+      <main>
+        <section>
+          <h2>Package Declaration</h2>
+          <p>Every Odin source file begins with a <code>package</code> declaration. The package name determines how other files import it.</p>
+          <pre><code class="language-odin"><span class="token-keyword">package</span> main</code></pre>
+          <p>If no package is declared, the compiler infers it from the directory name or file name.</p>
+        </section>
+
+        <section>
+          <h2>Import Statement</h2>
+          <p>Odin uses library collections to organize imports. The prefix before the colon tells the compiler which collection to search.</p>
+          <pre><code class="language-odin"><span class="token-keyword">import</span> <span class="token-string">"core:fmt"</span>
+<span class="token-keyword">import</span> <span class="token-string">"core:os"</span></code></pre>
+          <div class="callout callout-info">
+            <div class="callout-title">Library Collections</div>
+            <div>
+              <strong>core:</strong> — Core library (fmt, os, mem, strings, time, etc.)<br>
+              <strong>base:</strong> — Base library (runtime, intrinsics, containers)<br>
+              <strong>vendor:</strong> — Third-party library bindings (raylib, sdl3, curl, etc.)
+            </div>
+          </div>
+          <p>You can also give an import a different name:</p>
+          <pre><code class="language-odin"><span class="token-keyword">import</span> <span class="token-string">"core:fmt"</span>
+<span class="token-keyword">import</span> foo <span class="token-string">"core:fmt"</span> <span class="token-comment">// reference as foo instead of fmt</span></code></pre>
+        </section>
+
+        <section>
+          <h2>Comments</h2>
+          <p>Odin supports line comments with <code>//</code>:</p>
+          <pre><code class="language-odin"><span class="token-comment">// This is a line comment</span>
+x := 42 <span class="token-comment">// inline comment</span></code></pre>
+        </section>
+
+        <section>
+          <h2>Variables and Constants</h2>
+          <h3>Variable Declaration</h3>
+          <p>Odin uses <code>:=</code> for declaration with inference, and <code>=</code> for assignment:</p>
+          <pre><code class="language-odin">x := 42                       <span class="token-comment">// declare and infer type (int)</span>
+y := <span class="token-string">"hello"</span>                <span class="token-comment">// declare and infer type (string)</span>
+z: int = 100                  <span class="token-comment">// explicit type declaration</span>
+z = 200                       <span class="token-comment">// assignment (already declared)</span></code></pre>
+          <h3>Constants</h3>
+          <p>Use <code>constant</code> or <code>const</code> for compile-time values:</p>
+          <pre><code class="language-odin">constant Max_Users := 100
+const Pi := 3.14159</code></pre>
+        </section>
+
+        <section>
+          <h2>Basic Types</h3>
+          <table>
+            <thead>
+              <tr><th>Type</th><th>Description</th><th>Example</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>bool</code></td><td>Boolean: <code>true</code> or <code>false</code></td><td><code>flag := true</code></td></tr>
+              <tr><td><code>int</code></td><td>Signed integer (platform dependent)</td><td><code>x := 42</code></td></tr>
+              <tr><td><code>i8</code>, <code>i16</code>, <code>i32</code>, <code>i64</code>, <code>i128</code></td><td>Fixed-width signed integers</td><td><code>x: i32 = 42</code></td></tr>
+              <tr><td><code>uint</code>, <code>u8</code>, <code>u16</code>, <code>u32</code>, <code>u64</code>, <code>u128</code></td><td>Fixed-width unsigned integers</td><td><code>x: u64 = 42</code></td></tr>
+              <tr><td><code>f32</code>, <code>f64</code></td><td>Floating-point numbers</td><td><code>x: f64 = 3.14</code></td></tr>
+              <tr><td><code>string</code></td><td>Immutable UTF-8 string</td><td><code>s := "hello"</code></td></tr>
+              <tr><td><code>rune</code></td><td>Unicode code point (int32)</td><td><code>r := 'A'</code></td></tr>
+              <tr><td><code>cstring</code></td><td>C-compatible null-terminated string</td><td><code>s: cstring</code></td></tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section>
+          <h2>Blocks and Scope</h2>
+          <p>Odin uses braces <code>{ }</code> for blocks. Variables declared inside a block are scoped to that block:</p>
+          <pre><code class="language-odin">main :: proc() {
+    x := 10                       <span class="token-comment">// scoped to main</span>
+    {
+        y := 20                   <span class="token-comment">// scoped to inner block</span>
+        fmt.println(x + y)        <span class="token-comment">// 30</span>
+    }
+    <span class="token-comment">// fmt.println(y)              // error: y not in scope</span>
+}</code></pre>
+        </section>
+
+        <section>
+          <h2>Control Flow — if / else</h2>
+          <p>Odin's <code>if</code> does not require parentheses around the condition:</p>
+          <pre><code class="language-odin">main :: proc() {
+    age := 18
+    <span class="token-keyword">if</span> age >= 18 {
+        fmt.println(<span class="token-string">"adult"</span>)
+    } <span class="token-keyword">else</span> {
+        fmt.println(<span class="token-string">"minor"</span>)
+    }
+
+    <span class="token-comment">// if with initializer (like Go)</span>
+    <span class="token-keyword">if</span> x := compute_value(); x > 0 {
+        fmt.println(<span class="token-string">"positive: %v"</span>, x)
+    }
+}</code></pre>
+        </section>
+
+        <section>
+          <h2>Control Flow — switch</h2>
+          <p>Odin's <code>switch</code> is a powerful construct. Cases do not fall through by default:</p>
+          <pre><code class="language-odin">main :: proc() {
+    day := <span class="token-string">"Monday"</span>
+    <span class="token-keyword">switch</span> day {
+    <span class="token-keyword">case</span> <span class="token-string">"Monday"</span>:
+        fmt.println(<span class="token-string">"start of week"</span>)
+    <span class="token-keyword">case</span> <span class="token-string">"Friday"</span>:
+        fmt.println(<span class="token-string">"end of week"</span>)
+    <span class="token-keyword">case</span> <span class="token-string">"Saturday"</span>, <span class="token-string">"Sunday"</span>:
+        fmt.println(<span class="token-string">"weekend"</span>)
+    <span class="token-keyword">else</span>:
+        fmt.println(<span class="token-string">"weekday"</span>)
+    }
+
+    <span class="token-comment">// switch without expression (like if/else chain)</span>
+    <span class="token-keyword">switch</span> {
+    <span class="token-keyword">case</span> x &lt; 0:
+        fmt.println(<span class="token-string">"negative"</span>)
+    <span class="token-keyword">case</span> x == 0:
+        fmt.println(<span class="token-string">"zero"</span>)
+    <span class="token-keyword">else</span>:
+        fmt.println(<span class="token-string">"positive"</span>)
+    }
+}</code></pre>
+        </section>
+
+        <section>
+          <h2>Control Flow — for loop</h2>
+          <p>Odin uses <code>for</code> for all looping. There is no <code>while</code> or <code>do-while</code>:</p>
+          <pre><code class="language-odin">main :: proc() {
+    <span class="token-comment">// C-style for</span>
+    <span class="token-keyword">for</span> i := 0; i &lt; 5; i += 1 {
+        fmt.println(<span class="token-string">"i = %v"</span>, i)
+    }
+
+    <span class="token-comment">// condition-only (like while)</span>
+    <span class="token-keyword">for</span> x &lt; 10 {
+        x += 1
+    }
+
+    <span class="token-comment">// infinite loop</span>
+    <span class="token-keyword">for</span> {
+        <span class="token-keyword">break</span>  <span class="token-comment">// or this runs forever</span>
+    }
+
+    <span class="token-comment">// range over array</span>
+    arr := [3]int{10, 20, 30}
+    <span class="token-keyword">for</span> i <span class="token-keyword">in</span> arr {
+        fmt.println(<span class="token-string">"value: %v"</span>, i)
+    }
+
+    <span class="token-comment">// range with index</span>
+    <span class="token-keyword">for</span> i, v <span class="token-keyword">in</span> arr {
+        fmt.println(<span class="token-string">"index: %v, value: %v"</span>, i, v)
+    }
+}</code></pre>
+        </section>
+
+        <section>
+          <h2>Procedure Declaration</h2>
+          <p>Procedures are declared with <code>proc</code>. The procedure name uses <code>::</code> as a separator:</p>
+          <pre><code class="language-odin">add :: proc(a: int, b: int) -> int {
+    <span class="token-keyword">return</span> a + b
+}</code></pre>
+          <p>Multiple return values are supported:</p>
+          <pre><code class="language-odin">divmod :: proc(a: int, b: int) -> (quotient: int, remainder: int) {
+    <span class="token-keyword">return</span> a / b, a % b
+}
+
+main :: proc() {
+    q, r := divmod(10, 3)
+    fmt.println(<span class="token-string">"q: %v, r: %v"</span>, q, r)  <span class="token-comment">// q: 3, r: 1</span>
+}</code></pre>
+        </section>
+
+        <section>
+          <h2>Entry Point</h2>
+          <p>Every executable Odin program needs a <code>main</code> procedure in the <code>main</code> package:</p>
+          <pre><code class="language-odin"><span class="token-keyword">package</span> main
+
+<span class="token-keyword">import</span> <span class="token-string">"core:fmt"</span>
+
+main :: proc() {
+    fmt.println(<span class="token-string">"Hello, Odin!"</span>)
+}</code></pre>
+          <p>Compile and run:</p>
+          <pre><code class="language-bash">odin run main.odin</code></pre>
+          <div class="code-result">Hello, Odin!</div>
+        </section>
+      </main>
+    </div>
+  </div>
+</body>
+</html>

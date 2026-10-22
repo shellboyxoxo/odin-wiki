@@ -3,193 +3,181 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Odin Wiki — Dark Theme</title>
+  <title>Odin Wiki — Home</title>
   <link rel="stylesheet" href="theme.css">
 </head>
 <body>
-  <header>
-    <div class="container">
-      <h1 class="site-title">Odin Wiki</h1>
-      <p class="site-tagline">A dark-themed wiki for the Odin programming language — core library, vendor bindings, and practical use.</p>
-      <nav>
-        <a href="#overview" class="nav-link">Overview</a>
-        <a href="#vendor-libs" class="nav-link">Vendor Libraries</a>
-        <a href="#core-fmt" class="nav-link">core:fmt</a>
-        <a href="#builtins" class="nav-link">Built-in Procedures</a>
-        <a href="#quick-reference" class="nav-link">Quick Reference</a>
-      </nav>
-    </div>
-  </header>
-
-  <div class="container">
-    <main>
-      <section id="overview">
-        <h2>Overview</h2>
-        <p>Odin is a general-purpose programming language with distinct typing, built for high performance, modern systems, and built-in data-oriented data types. It is often described as <em>the C alternative for the joy of programming.</em></p>
-        <div class="callout callout-info">
-          <div class="callout-title">Latest Release: dev-2026-10</div>
-          <div>Released October 6, 2026 (commit <code>84bc3fc</code>). Key highlights:</div>
+  <div class="page-layout">
+    <!-- ── Left Sidebar ── -->
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <span class="brand-title">Odin Wiki</span>
+        <span class="brand-tagline">Odin Programming Language Reference</span>
+      </div>
+      <div class="sidebar-search">
+        <input type="text" placeholder="Search…">
+      </div>
+      <nav class="sidebar-nav">
+        <div class="nav-group">
+          <span class="nav-group-title">Getting Started</span>
           <ul>
-            <li><strong>New language feature:</strong> Allow <code>bit_set</code> to be backed by arrays of integers.</li>
-            <li><strong>Speedups:</strong> LLVM backend performance improvements, parapoly rewrite, multithreaded semantic checker, and <code>map</code> performance improvements.</li>
-            <li><strong>Package collections:</strong> base, core, and vendor — over 200 packages and 100,000+ declarations across all collections.</li>
+            <li><a href="index.html" class="nav-link active current-section">Home</a></li>
+            <li><a href="getting-started.html" class="nav-link">Getting Started</a></li>
+            <li><a href="hello-world.html" class="nav-link">Hello World</a></li>
           </ul>
         </div>
-        <p>The <strong>vendor</strong> collection contains 54 packages (26,903 declarations) with bindings to popular third-party libraries for graphics, windowing, audio, physics, and more — all shipped with the compiler under the zlib license.</p>
-      </section>
+        <div class="nav-group">
+          <span class="nav-group-title">Core Language</span>
+          <ul>
+            <li><a href="language/syntax.html" class="nav-link">Core Syntax</a></li>
+            <li><a href="language/types.html" class="nav-link">Types</a></li>
+            <li><a href="language/procedures.html" class="nav-link">Procedures</a></li>
+            <li><a href="language/builtins.html" class="nav-link">Built-in Procedures</a></li>
+            <li><a href="language/memory.html" class="nav-link">Memory Management</a></li>
+          </ul>
+        </div>
+        <div class="nav-group">
+          <span class="nav-group-title">Standard Library</span>
+          <ul>
+            <li><a href="stdlib/overview.html" class="nav-link">Overview</a></li>
+            <li><a href="stdlib/fmt.html" class="nav-link">core:fmt</a></li>
+            <li><a href="stdlib/os.html" class="nav-link">core:os</a></li>
+            <li><a href="stdlib/mem.html" class="nav-link">base:runtime</a></li>
+          </ul>
+        </div>
+        <div class="nav-group">
+          <span class="nav-group-title">Vendor Libraries</span>
+          <ul>
+            <li><a href="vendor/overview.html" class="nav-link">Vendor Overview</a></li>
+            <li><a href="vendor/graphics.html" class="nav-link">Graphics</a></li>
+            <li><a href="vendor/audio.html" class="nav-link">Audio</a></li>
+            <li><a href="vendor/physics.html" class="nav-link">Physics</a></li>
+            <li><a href="vendor/networking.html" class="nav-link">Networking</a></li>
+            <li><a href="vendor/system.html" class="nav-link">System</a></li>
+          </ul>
+        </div>
+        <div class="nav-group">
+          <span class="nav-group-title">Guides &amp; Examples</span>
+          <ul>
+            <li><a href="guides/getting-started.html" class="nav-link">Guides Index</a></li>
+            <li><a href="examples/index.html" class="nav-link">Examples Index</a></li>
+          </ul>
+        </div>
+        <div class="nav-group">
+          <span class="nav-group-title">Reference</span>
+          <ul>
+            <li><a href="reference/format-verbs.html" class="nav-link">Format Verbs</a></li>
+            <li><a href="reference/operators.html" class="nav-link">Operators</a></li>
+            <li><a href="reference/keywords.html" class="nav-link">Keywords</a></li>
+          </ul>
+        </div>
+        <div class="nav-group">
+          <span class="nav-group-title">Releases</span>
+          <ul>
+            <li><a href="releases/dev-2026-10.html" class="nav-link">dev-2026-10</a></li>
+          </ul>
+        </div>
+      </nav>
+    </aside>
 
-      <section id="vendor-libs">
-        <h2>Vendor Libraries</h2>
-        <p>The vendor collection provides Odin bindings to widely-used C and C++ libraries. These are shipped with the compiler and ready to import via <code>vendor:&lt;name&gt;</code>.</p>
-        <table>
-          <thead>
-            <tr><th>Category</th><th>Vendor Packages</th><th>Use Case</th></tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Graphics &amp; Windowing</td>
-              <td><code>vendor:raylib</code>, <code>vendor:sdl3</code>, <code>vendor:wgpu</code>, <code>vendor:glfw</code>, <code>vendor:vulkan</code>, <code>vendor:egl</code>, <code>vendor:wasapi</code></td>
-              <td>Games, GUIs, multimedia, GPU compute</td>
-            </tr>
-            <tr>
-              <td>Audio</td>
-              <td><code>vendor:miniaudio</code>, <code>vendor:openal</code>, <code>vendor:opusfile</code>, <code>vendor:libvorbis</code></td>
-              <td>Audio playback, encoding, spatial audio</td>
-            </tr>
-            <tr>
-              <td>Physics</td>
-              <td><code>vendor:box2d</code>, <code>vendor:box3d</code>, <code>vendor:ode</code></td>
-              <td>2D/3D physics simulation</td>
-            </tr>
-            <tr>
-              <td>Networking &amp; Crypto</td>
-              <td><code>vendor:curl</code>, <code>vendor:openssl</code>, <code>vendor:zlib</code>, <code>vendor:libpng</code>, <code>vendor:OpenEXRCore</code></td>
-              <td>HTTP, TLS, compression, image I/O</td>
-            </tr>
-            <tr>
-              <td>System &amp; Platform</td>
-              <td><code>vendor:windows</code>, <code>vendor:sys/windows</code>, <code>vendor:sys/linux</code>, <code>vendor:libc-shim</code></td>
-              <td>Platform-specific APIs, syscalls</td>
-            </tr>
-          </tbody>
-        </table>
-        <div class="callout callout-info">
-          <div class="callout-title">Example: Using vendor:raylib</div>
+    <!-- ── Main Content ── -->
+    <div class="main-content">
+      <header>
+        <h1 class="page-title">Home</h1>
+        <p class="page-subtitle">Welcome to the Odin Wiki — a reference for the Odin programming language, its standard library, and vendor bindings.</p>
+      </header>
+
+      <main>
+        <section>
+          <h2>Overview</h2>
+          <p>Odin is a general-purpose programming language with distinct typing, built for high performance, modern systems, and built-in data-oriented data types. It is often described as <em>the C alternative for the joy of programming.</em></p>
+          <p>The language emphasizes clarity, simplicity, and explicitness. It is designed as a C alternative that aims to provide the joy of programming while maintaining performance and control.</p>
+        </section>
+
+        <section>
+          <h2>Latest Release</h2>
+          <div class="callout callout-info">
+            <div class="callout-title">dev-2026-10</div>
+            <div>Released October 6, 2026 (commit <code>84bc3fc</code>).</div>
+            <ul>
+              <li><strong>New language feature:</strong> Allow <code>bit_set</code> to be backed by arrays of integers.</li>
+              <li><strong>Speedups:</strong> LLVM backend performance improvements, parapoly rewrite, multithreaded semantic checker, and <code>map</code> performance improvements.</li>
+              <li><strong>Package collections:</strong> base, core, and vendor — over 200 packages and 100,000+ declarations across all collections.</li>
+            </ul>
+          </div>
+        </section>
+
+        <section>
+          <h2>Quick Start</h2>
+          <p>Install Odin on Arch Linux:</p>
+          <pre><code class="language-bash">sudo pacman -S odin</code></pre>
+          <p>Verify the installation:</p>
+          <pre><code class="language-bash">odin version</code></pre>
+          <div class="code-result">odin version dev-2026-10:84bc3fc21</div>
+          <p>Create your first file, <code>hello.odin</code>:</p>
           <pre><code class="language-odin"><span class="token-keyword">package</span> main
-
-<span class="token-keyword">import</span> <span class="token-string">"vendor:raylib"</span>
-<span class="token-keyword">import</span> <span class="token-string">"core:fmt"</span>
-
-main :: proc() {
-    rl.InitWindow(800, 450, <span class="token-string">"Odin + raylib"</span>)
-    <span class="token-keyword">defer</span> rl.CloseWindow()
-
-    <span class="token-keyword">for</span> <span class="token-keyword">not</span> rl.WindowShouldClose() {
-        rl.BeginDrawing()
-        rl.ClearBackground(rl.RAYWHITE)
-        rl.DrawText(<span class="token-string">"Hello from Odin!"</span>, 190, 200, 20, rl.VIOLET)
-        rl.EndDrawing()
-    }
-}</code></pre>
-        </div>
-      </section>
-
-      <section id="core-fmt">
-        <h2>core:fmt — Formatted I/O</h2>
-        <p><code>core:fmt</code> provides formatted input/output with procedures similar to C's <code>printf</code> and Python's <code>format</code>. Format <em>verbs</i> are derived from C's but simpler.</p>
-
-        <h3>Common format verbs</h3>
-        <table>
-          <thead><tr><th>Verb</th><th>Meaning</th><th>Example</th></tr></thead>
-          <tbody>
-            <tr><td><code>%v</code></td><td>Default format</td><td><code>fmt.println("value: %v", x)</code></td></tr>
-            <tr><td><code>%#v</code></td><td>Expanded format (newlines, indentation)</td><td><code>fmt.printfln("%#v", my_struct)</code></td></tr>
-            <tr><td><code>%T</code></td><td>Odin-syntax type representation</td><td><code>fmt.println("%T", value)</code></td></tr>
-            <tr><td><code>%t</code></td><td>Boolean "true"/"false"</td><td><code>fmt.println("%t", flag)</code></td></tr>
-            <tr><td><code>%d</code> / <code>%i</code></td><td>Base 10 integer</td><td><code>fmt.println("%d", count)</code></td></tr>
-            <tr><td><code>%x</code> / <code>%X</code></td><td>Base 16 hex (lower/upper)</td><td><code>fmt.println("%x", flags)</code></td></tr>
-            <tr><td><code>%b</code></td><td>Base 2 binary</td><td><code>fmt.println("%b", bits)</code></td></tr>
-            <tr><td><code>%f</code></td><td>Decimal floating-point</td><td><code>fmt.println("%.2f", price)</code></td></tr>
-            <tr><td><code>%s</code></td><td>Raw bytes of string/slice</td><td><code>fmt.print("%s", name)</code></td></tr>
-            <tr><td><code>%q</code></td><td>Double-quoted, Odin-escaped string</td><td><code>fmt.println("%q", s)</code></td></tr>
-            <tr><td><code>%p</code></td><td>Pointer address (base 16, <code>0x</code> prefix)</td><td><code>fmt.println("%p", ptr)</code></td></tr>
-          </tbody>
-        </table>
-
-        <h3>Key procedures (82 total)</h3>
-        <ul>
-          <li><code>print</code>, <code>printf</code>, <code>printfln</code>, <code>println</code> — stdout output</li>
-          <li><code>eprint</code>, <code>eprintf</code>, <code>eprintfln</code>, <code>eprintln</code> — stderr output</li>
-          <li><code>fprint</code>, <code>fprintf</code>, <code>fprintfln</code>, <code>fprintln</code> — file output</li>
-          <li><code>aprint</code>, <code>aprintf</code>, <code>aprintfln</code>, <code>alprintln</code> — allocated string output</li>
-          <li><code>tprint</code>, <code>tprintf</code>, <code>tprintfln</code>, <code>tprintln</code> — temporary allocator string output</li>
-          <li><code>panicf</code>, <code>assertf</code>, <code>ensuref</code> — formatted panics and assertions</li>
-        </ul>
-        <pre><code class="language-odin"><span class="token-keyword">import</span> <span class="token-string">"core:fmt"</span>
-
-main :: proc() {
-    name := <span class="token-string">"Odin"</span>
-    version := <span class="token-string">"dev-2026-10"</span>
-    fmt.printfln(<span class="token-string">"Welcome to %s, version %s"</span>, name, version)
-    fmt.println(<span class="token-string">"Type of version:"</span>, <span class="token-string">"%T"</span>, version)
-}</code></pre>
-      </section>
-
-      <section id="builtins">
-        <h2>Built-in Procedures</h2>
-        <p>Odin has compiler-defined and core-library-defined built-in procedures. The core-library ones live in <code>base:runtime</code>.</p>
-        <table>
-          <thead><tr><th>Procedure</th><th>Description</th></th></thead>
-          <tbody>
-            <tr><td><code>len(x)</code></td><td>Length of string, array, slice, dynamic array, map, etc.</td></tr>
-            <tr><td><code>cap(x)</code></td><td>Capacity of array, slice, dynamic array, map, etc.</td></tr>
-            <tr><td><code>size_of(T)</code></td><td>Size of a type in bytes</td></tr>
-            <tr><td><code>align_of(T)</code></td><td>Alignment of a type in bytes</td></tr>
-            <tr><td><code>type_of(x)</code></td><td>Type of an expression</td></tr>
-            <tr><td><code>min(a, b, ...)</code></td><td>Minimum of the values</td></tr>
-            <tr><td><code>max(a, b, ...)</code></td><td>Maximum of the values</td></tr>
-            <tr><td><code>clamp(x, lo, hi)</code></td><td>Clamps a value between two bounds</td></tr>
-            <tr><td><code>abs(x)</code></td><td>Absolute value</td></tr>
-            <tr><td><code>new(T)</code></td><td>Allocate a new zeroed value of type T (<code>base:runtime</code>)</td></tr>
-            <tr><td><code>make(T, n)</code></td><td>Make a slice/dynamic array of length n (<code>base:runtime</code>)</td></tr>
-            <tr><td><code>append(x, v)</code></td><td>Append value to dynamic array (<code>base:runtime</code>)</td></tr>
-            <tr><td><code>delete(x)</code></td><td>Deallocate memory (<code>base:runtime</code>)</td></tr>
-          </tbody>
-        </table>
-      </section>
-
-      <section id="quick-reference">
-        <h2>Quick Reference</h2>
-        <div class="callout callout-warn">
-          <div class="callout-title">Important</div>
-          <div>The Odin compiler is still in development. Breaking changes may occur between releases.</div>
-        </div>
-        <h3>Basic program structure</h3>
-        <pre><code class="language-odin"><span class="token-keyword">package</span> main
 
 <span class="token-keyword">import</span> <span class="token-string">"core:fmt"</span>
 
 main :: proc() {
     fmt.println(<span class="token-string">"Hello, Odin!"</span>)
 }</code></pre>
-        <h3>Compile and run</h3>
-        <pre><code class="language-bash">odin run .           # compile and run current directory
-odin build .         # build executable
-odin file main.odin  # type-check a single file</code></pre>
-        <h3>Useful links</h3>
-        <ul>
-          <li><a href="https://odin-lang.org/" target="_blank">Odin Homepage</a></li>
-          <li><a href="https://odin-lang.org/docs/" target="_blank">Odin Documentation</a></li>
-          <li><a href="https://pkg.odin-lang.org/" target="_blank">Package Documentation (base, core, vendor)</a></li>
-          <li><a href="https://github.com/odin-lang/Odin" target="_blank">Odin on GitHub</a></li>
-          <li><a href="https://github.com/odin-lang/Odin/releases" target="_blank">Odin Releases</a></li>
-        </ul>
-      </section>
-    </main>
+          <p>Compile and run:</p>
+          <pre><code class="language-bash">odin run hello.odin</code></pre>
+          <div class="code-result">Hello, Odin!</div>
+        </section>
 
-    <footer>
-      <p>Odin Wiki &middot; Built with the dark theme for <code>odin wiki</code> project &middot; Odin dev-2026-10</p>
-    </footer>
+        <section>
+          <h2>What's in this Wiki</h2>
+          <table>
+            <thead>
+              <tr><th>Section</th><th>Description</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Core Language</strong></td>
+                <td>Syntax, types, procedures, built-ins, memory management — each topic includes inline code examples showing how to use every feature.</td>
+              </tr>
+              <tr>
+                <td><strong>Standard Library</strong></td>
+                <td>Documentation for <code>core:</code> and <code>base:</code> packages including <code>fmt</code>, <code>os</code>, <code>mem</code>, and more.</td>
+              </tr>
+              <tr>
+                <td><strong>Vendor Libraries</strong></td>
+                <td>Detailed reference for all 54 vendor packages (graphics, audio, physics, networking, system) with verbose examples for each function.</td>
+              </tr>
+              <tr>
+                <td><strong>Guides</strong></td>
+                <td>Task-oriented how-tos: getting started, coming from C/C++, game development, FFI.</td>
+              </tr>
+              <tr>
+                <td><strong>Reference</strong></td>
+                <td>Format verbs, operators, keywords cheat sheets.</td>
+              </tr>
+              <tr>
+                <td><strong>Releases</strong></td>
+                <td>Changelog and upgrade notes for each Odin release.</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section>
+          <h2>Useful Links</h2>
+          <ul>
+            <li><a href="https://odin-lang.org/" target="_blank">Odin Homepage</a></li>
+            <li><a href="https://odin-lang.org/docs/" target="_blank">Odin Documentation</a></li>
+            <li><a href="https://pkg.odin-lang.org/" target="_blank">Package Documentation (base, core, vendor)</a></li>
+            <li><a href="https://github.com/odin-lang/Odin" target="_blank">Odin on GitHub</a></li>
+            <li><a href="https://github.com/odin-lang/Odin/releases" target="_blank">Odin Releases</a></li>
+          </ul>
+        </section>
+
+        <footer>
+          <p>Odin Wiki &middot; Dark theme for Odin language documentation &middot; Built with inline examples</p>
+        </footer>
+      </main>
+    </div>
   </div>
 </body>
 </html>

@@ -1,9 +1,10 @@
 /*
- * Odin Wiki — Dark Theme
+ * Odin Wiki — Dark Theme with Left Sidebar Navigation
  *
- * A dark, low-contrast theme designed for reading Odin language documentation
- * and vendor function references. Not white — deep charcoal and slate tones
- * with accent colors drawn from Odin's branding.
+ * Layout modeled after mdBook / Rust documentation style:
+ * - Fixed left sidebar with navigation
+ * - Main content area on the right
+ * - Dark charcoal/slate palette, not white
  */
 
 /* ── Root variables ── */
@@ -11,6 +12,8 @@
   --bg:             #121417;
   --bg-panel:       #1a1d21;
   --bg-elevated:    #212429;
+  --sidebar-bg:     #16181b;
+  --sidebar-border: #23272d;
   --fg:             #e8eaed;
   --fg-muted:       #9aa3ad;
   --fg-dim:         #6b727d;
@@ -53,66 +56,148 @@ body {
   color: var(--fg);
 }
 
-/* ── Links ── */
-a {
-  color: var(--accent);
-  text-decoration: none;
-  border-bottom: 1px solid transparent;
-  transition: border-color 0.2s ease, color 0.2s ease;
-}
-a:hover { color: var(--accent-hover); border-bottom-color: var(--accent-hover); }
-a:focus-visible { outline: 2px solid var(--border-focus); outline-offset: 2px; }
-
 /* ── Layout ── */
-.container {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 2rem 1.5rem;
-}
-
-header {
-  padding: 3rem 1.5rem 2rem;
-  border-bottom: 1px solid var(--border);
-  background: linear-gradient(180deg, var(--bg-panel), var(--bg));
-}
-header .site-title {
-  margin: 0;
-  font-size: 2rem;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  color: var(--fg);
-}
-header .site-tagline {
-  margin: 0.5rem 0 0;
-  color: var(--fg-muted);
-  font-size: 1rem;
-}
-
-/* ── Navigation ── */
-nav {
+.page-layout {
   display: flex;
-  gap: 0.5rem;
-  flex-wrap: wrap;
-  margin-top: 1.5rem;
+  min-height: 100vh;
 }
-.nav-link {
-  display: inline-block;
-  padding: 0.5rem 1rem;
-  font-size: 0.9rem;
-  color: var(--fg-muted);
+
+/* ── Sidebar ── */
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 280px;
+  background: var(--sidebar-bg);
+  border-right: 1px solid var(--sidebar-border);
+  overflow-y: auto;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-brand {
+  padding: 1.25rem 1.25rem 1rem;
+  border-bottom: 1px solid var(--sidebar-border);
+}
+.sidebar-brand .brand-title {
+  display: block;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--fg);
+  letter-spacing: -0.01em;
+}
+.sidebar-brand .brand-tagline {
+  display: block;
+  margin-top: 0.25rem;
+  font-size: 0.75rem;
+  color: var(--fg-dim);
+}
+
+.sidebar-search {
+  padding: 0.75rem 1.25rem;
+  border-bottom: 1px solid var(--sidebar-border);
+}
+.sidebar-search input {
+  width: 100%;
+  background: var(--bg-elevated);
   border: 1px solid var(--border);
   border-radius: 6px;
-  background: var(--bg-elevated);
-  transition: all 0.2s ease;
+  padding: 0.5rem 0.75rem;
+  color: var(--fg);
+  font-size: 0.875rem;
+}
+.sidebar-search input:focus {
+  outline: none;
+  border-color: var(--border-focus);
+}
+
+.sidebar-nav {
+  flex: 1;
+  padding: 1rem 1.25rem;
+  overflow-y: auto;
+}
+.nav-group {
+  margin-bottom: 1.5rem;
+}
+.nav-group-title {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--fg-dim);
+  margin-bottom: 0.75rem;
+  padding-left: 0.25rem;
+}
+.nav-group ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.nav-group li {
+  margin: 0;
+}
+.nav-link {
+  display: block;
+  padding: 0.55rem 0.75rem;
+  font-size: 0.875rem;
+  color: var(--fg-muted);
+  text-decoration: none;
+  border-radius: 6px;
+  transition: all 0.15s ease;
+  border-left: 2px solid transparent;
 }
 .nav-link:hover {
   color: var(--fg);
-  border-color: var(--border-focus);
-  background: var(--bg-panel);
+  background: var(--bg-elevated);
+  border-left-color: var(--accent);
+}
+.nav-link.active {
+  color: var(--accent);
+  background: rgba(91, 141, 239, 0.08);
+  border-left-color: var(--accent);
+}
+.nav-link.current-section {
+  color: var(--fg);
+  font-weight: 600;
+  background: rgba(91, 141, 239, 0.05);
 }
 
-/* ── Content ── */
-main { margin-top: 2rem; }
+/* ── Main content ── */
+.main-content {
+  flex: 1;
+  margin-left: 280px;
+  min-height: 100vh;
+}
+
+header {
+  position: sticky;
+  top: 0;
+  padding: 1.25rem 2rem;
+  border-bottom: 1px solid var(--sidebar-border);
+  background: linear-gradient(180deg, var(--bg-panel), var(--bg));
+  z-index: 50;
+}
+header .page-title {
+  margin: 0;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--fg);
+  letter-spacing: -0.01em;
+}
+header .page-subtitle {
+  margin: 0.25rem 0 0;
+  color: var(--fg-muted);
+  font-size: 0.9rem;
+}
+
+main {
+  padding: 2rem;
+  max-width: 900px;
+}
+
 section {
   margin-bottom: 3rem;
   padding: 1.5rem;
@@ -143,6 +228,7 @@ pre {
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
   font-size: 0.875rem;
   line-height: 1.5;
+  margin: 1rem 0;
 }
 code {
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
@@ -151,6 +237,16 @@ code {
   padding: 0.15rem 0.4rem;
   border-radius: 4px;
   color: var(--syntax-string);
+}
+.code-result {
+  margin-top: 0.75rem;
+  padding: 0.75rem;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.875rem;
+  color: var(--ok);
 }
 
 /* ── Syntax highlighting ── */
@@ -161,6 +257,8 @@ code {
 .token-type      { color: var(--syntax-type); }
 .token-tag       { color: var(--syntax-tag); font-weight: bold; }
 .token-attr      { color: var(--syntax-attr); }
+.token-number    { color: var(--syntax-func); }
+.token-operator  { color: var(--fg); }
 
 /* ── Tables ── */
 table {
@@ -194,16 +292,26 @@ tr:nth-child(even) td { background: var(--bg-panel); }
 
 /* ── Footer ── */
 footer {
-  padding: 2rem 1.5rem;
+  padding: 2rem;
   border-top: 1px solid var(--border);
   color: var(--fg-dim);
   font-size: 0.85rem;
 }
 
-/* ── Responsive ── */
-@media (max-width: 640px) {
-  .container { padding: 1rem; }
-  header { padding: 2rem 1rem 1.5rem; }
-  nav { flex-direction: column; align-items: flex-start; }
-  .nav-link { width: 100%; text-align: center; }
+/* ── Mobile ── */
+@media (max-width: 768px) {
+  .sidebar {
+    position: absolute;
+    z-index: 200;
+    transform: translateX(-100%);
+    transition: transform 0.25s ease;
+  }
+  .sidebar.open {
+    transform: translateX(0);
+  }
+  .main-content {
+    margin-left: 0;
+  }
+  header { padding: 1rem 1rem; }
+  main { padding: 1rem; }
 }
