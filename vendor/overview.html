@@ -8,14 +8,11 @@
 </head>
 <body>
   <div class="page-layout">
-    <!-- ── Left Sidebar ── -->
-    <aside class="sidebar">
+        <!-- ── Left Sidebar (canonical block — keep identical on every page) ── -->
+    <aside class="sidebar" id="sidebar">
       <div class="sidebar-brand">
         <span class="brand-title">Odin Wiki</span>
         <span class="brand-tagline">Odin Programming Language Reference</span>
-      </div>
-      <div class="sidebar-search">
-        <input type="text" placeholder="Search…">
       </div>
       <nav class="sidebar-nav">
         <div class="nav-group">
@@ -23,66 +20,68 @@
           <ul>
             <li><a href="../index.html" class="nav-link">Home</a></li>
             <li><a href="../getting-started.html" class="nav-link">Getting Started</a></li>
-            <li><a href="../hello-world.html" class="nav-link">Hello World</a></li>
+            <li><span class="nav-link nav-soon">Hello World</span></li>
           </ul>
         </div>
         <div class="nav-group">
           <span class="nav-group-title">Core Language</span>
           <ul>
             <li><a href="../language/syntax.html" class="nav-link">Core Syntax</a></li>
-            <li><a href="../language/types.html" class="nav-link">Types</a></li>
-            <li><a href="../language/procedures.html" class="nav-link">Procedures</a></li>
+            <li><span class="nav-link nav-soon">Types</span></li>
+            <li><span class="nav-link nav-soon">Procedures</span></li>
             <li><a href="../language/builtins.html" class="nav-link">Built-in Procedures</a></li>
-            <li><a href="../language/memory.html" class="nav-link">Memory Management</a></li>
+            <li><span class="nav-link nav-soon">Memory Management</span></li>
           </ul>
         </div>
         <div class="nav-group">
           <span class="nav-group-title">Standard Library</span>
           <ul>
-            <li><a href="../stdlib/overview.html" class="nav-link">Overview</a></li>
+            <li><span class="nav-link nav-soon">Overview</span></li>
             <li><a href="../stdlib/fmt.html" class="nav-link">core:fmt</a></li>
-            <li><a href="../stdlib/os.html" class="nav-link">core:os</a></li>
-            <li><a href="../stdlib/mem.html" class="nav-link">base:runtime</a></li>
+            <li><span class="nav-link nav-soon">core:os</span></li>
+            <li><span class="nav-link nav-soon">base:runtime</span></li>
           </ul>
         </div>
         <div class="nav-group">
           <span class="nav-group-title">Vendor Libraries</span>
           <ul>
-            <li><a href="overview.html" class="nav-link active current-section">Vendor Overview</a></li>
-            <li><a href="graphics.html" class="nav-link">Graphics</a></li>
-            <li><a href="audio.html" class="nav-link">Audio</a></li>
-            <li><a href="physics.html" class="nav-link">Physics</a></li>
-            <li><a href="networking.html" class="nav-link">Networking</a></li>
-            <li><a href="system.html" class="nav-link">System</a></li>
+            <li><a href="../vendor/overview.html" class="nav-link active current-section">Vendor Overview</a></li>
+            <li><span class="nav-link nav-soon">Graphics</span></li>
+            <li><span class="nav-link nav-soon">Audio</span></li>
+            <li><span class="nav-link nav-soon">Physics</span></li>
+            <li><span class="nav-link nav-soon">Networking</span></li>
+            <li><span class="nav-link nav-soon">System</span></li>
           </ul>
         </div>
         <div class="nav-group">
           <span class="nav-group-title">Guides &amp; Examples</span>
           <ul>
-            <li><a href="../guides/getting-started.html" class="nav-link">Guides Index</a></li>
-            <li><a href="../examples/index.html" class="nav-link">Examples Index</a></li>
+            <li><span class="nav-link nav-soon">Guides Index</span></li>
+            <li><span class="nav-link nav-soon">Examples Index</span></li>
           </ul>
         </div>
         <div class="nav-group">
           <span class="nav-group-title">Reference</span>
           <ul>
-            <li><a href="../reference/format-verbs.html" class="nav-link">Format Verbs</a></li>
-            <li><a href="../reference/operators.html" class="nav-link">Operators</a></li>
-            <li><a href="../reference/keywords.html" class="nav-link">Keywords</a></li>
+            <li><span class="nav-link nav-soon">Format Verbs</span></li>
+            <li><span class="nav-link nav-soon">Operators</span></li>
+            <li><span class="nav-link nav-soon">Keywords</span></li>
           </ul>
         </div>
         <div class="nav-group">
           <span class="nav-group-title">Releases</span>
           <ul>
-            <li><a href="../releases/dev-2026-10.html" class="nav-link">dev-2026-10</a></li>
+            <li><span class="nav-link nav-soon">dev-2026-10</span></li>
           </ul>
         </div>
       </nav>
     </aside>
+    <div class="sidebar-backdrop"></div>
 
     <!-- ── Main Content ── -->
     <div class="main-content">
       <header>
+                <button class="menu-toggle" aria-label="Open navigation" aria-expanded="false" aria-controls="sidebar">&#9776;</button>
         <h1 class="page-title">Vendor Libraries</h1>
         <p class="page-subtitle">The <code>vendor:</code> collection — Odin's bindings to popular third-party libraries.</p>
       </header>
@@ -240,11 +239,39 @@ main :: proc() {
           </ul>
         </section>
 
+       
         <footer>
+          <nav class="pager" aria-label="Page navigation">
+            <a class="pager-prev" href="../stdlib/fmt.html">&larr; core:fmt</a>
+            <span></span>
+          </nav>
           <p>Odin Wiki &middot; Dark theme for Odin language documentation &middot; Built with inline examples</p>
         </footer>
+      
       </main>
     </div>
   </div>
+  <script>
+  (function () {
+    var sidebar = document.getElementById('sidebar');
+    var backdrop = document.querySelector('.sidebar-backdrop');
+    var toggle = document.querySelector('.menu-toggle');
+    function setOpen(open) {
+      sidebar.classList.toggle('open', open);
+      backdrop.classList.toggle('show', open);
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    }
+    toggle.addEventListener('click', function () {
+      setOpen(!sidebar.classList.contains('open'));
+    });
+    backdrop.addEventListener('click', function () { setOpen(false); });
+    sidebar.querySelectorAll('a.nav-link').forEach(function (link) {
+      link.addEventListener('click', function () { setOpen(false); });
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') { setOpen(false); }
+    });
+  })();
+  </script>
 </body>
 </html>

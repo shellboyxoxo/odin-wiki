@@ -95,24 +95,6 @@ body {
   color: var(--fg-dim);
 }
 
-.sidebar-search {
-  padding: 0.75rem 1.25rem;
-  border-bottom: 1px solid var(--sidebar-border);
-}
-.sidebar-search input {
-  width: 100%;
-  background: var(--bg-elevated);
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  padding: 0.5rem 0.75rem;
-  color: var(--fg);
-  font-size: 0.875rem;
-}
-.sidebar-search input:focus {
-  outline: none;
-  border-color: var(--border-focus);
-}
-
 .sidebar-nav {
   flex: 1;
   padding: 1rem 1.25rem;
@@ -165,6 +147,57 @@ body {
   background: rgba(91, 141, 239, 0.05);
 }
 
+/* Coming-soon nav items: planned pages that do not exist yet.
+   Disabled spans (not links) so no sidebar item can ever 404. */
+.nav-link.nav-soon {
+  color: var(--fg-dim);
+  cursor: default;
+  pointer-events: none;
+}
+.nav-link.nav-soon::after {
+  content: "soon";
+  float: right;
+  margin-top: 0.2rem;
+  font-size: 0.6rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  opacity: 0.75;
+}
+
+/* ── Mobile nav: toggle button + backdrop (visible/active at <=768px) ── */
+.menu-toggle {
+  display: none;
+  position: absolute;
+  left: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--fg);
+  font-size: 1.2rem;
+  line-height: 1;
+  cursor: pointer;
+}
+.menu-toggle:hover {
+  color: var(--accent-hover);
+  border-color: var(--accent);
+}
+.sidebar-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 150;
+}
+.sidebar-backdrop.show {
+  display: block;
+}
+
 /* ── Main content ── */
 .main-content {
   flex: 1;
@@ -196,6 +229,16 @@ header .page-subtitle {
 main {
   padding: 2rem;
   max-width: 900px;
+}
+
+/* Base content links (sidebar/nav links carry their own rules) */
+main a {
+  color: var(--accent);
+  text-decoration: none;
+}
+main a:hover {
+  color: var(--accent-hover);
+  text-decoration: underline;
 }
 
 section {
@@ -237,6 +280,12 @@ code {
   padding: 0.15rem 0.4rem;
   border-radius: 4px;
   color: var(--syntax-string);
+}
+/* Inline-code pill must not stack a second background inside pre */
+pre code {
+  background: transparent;
+  padding: 0;
+  color: var(--fg);
 }
 .code-result {
   margin-top: 0.75rem;
@@ -297,21 +346,71 @@ footer {
   color: var(--fg-dim);
   font-size: 0.85rem;
 }
+/* Prev / next pager inside the footer */
+footer .pager {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+footer .pager a {
+  color: var(--accent);
+  text-decoration: none;
+  font-size: 0.85rem;
+  padding: 0.45rem 0.9rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  transition: all 0.15s ease;
+}
+footer .pager a:hover {
+  color: var(--accent-hover);
+  border-color: var(--accent);
+}
+
+/* ── Tablet: slimmer sidebar ── */
+@media (max-width: 1024px) {
+  .sidebar {
+    width: 240px;
+  }
+  .main-content {
+    margin-left: 240px;
+  }
+}
 
 /* ── Mobile ── */
 @media (max-width: 768px) {
   .sidebar {
-    position: absolute;
+    position: fixed;
+    width: min(280px, 85vw);
     z-index: 200;
     transform: translateX(-100%);
     transition: transform 0.25s ease;
   }
   .sidebar.open {
     transform: translateX(0);
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
+  }
+  .sidebar-backdrop.show {
+    display: block;
+  }
+  .menu-toggle {
+    display: block;
   }
   .main-content {
     margin-left: 0;
   }
-  header { padding: 1rem 1rem; }
-  main { padding: 1rem; }
+  header {
+    z-index: 180; /* above backdrop (150), below open sidebar (200) */
+    padding: 1rem 1rem 1rem 4.5rem;
+  }
+  main {
+    padding: 1rem;
+  }
+  /* Wide reference tables scroll inside their container instead of
+     pushing the whole page into horizontal scroll */
+  table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
 }

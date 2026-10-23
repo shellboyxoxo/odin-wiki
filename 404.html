@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Odin Wiki — Page Not Found</title>
+  <link rel="stylesheet" href="theme.css">
+</head>
+<body>
+  <div class="page-layout">
+    <!-- ── Left Sidebar (canonical block — keep identical on every page) ── -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-brand">
+        <span class="brand-title">Odin Wiki</span>
+        <span class="brand-tagline">Odin Programming Language Reference</span>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="nav-group">
+          <span class="nav-group-title">Getting Started</span>
+          <ul>
+            <li><a href="index.html" class="nav-link">Home</a></li>
+            <li><a href="getting-started.html" class="nav-link">Getting Started</a></li>
+            <li><span class="nav-link nav-soon">Hello World</span></li>
+          </ul>
+        </div>
+        <div class="nav-group">
+          <span class="nav-group-title">Core Language</span>
+          <ul>
+            <li><a href="language/syntax.html" class="nav-link">Core Syntax</a></li>
+            <li><span class="nav-link nav-soon">Types</span></li>
+            <li><span class="nav-link nav-soon">Procedures</span></li>
+            <li><a href="language/builtins.html" class="nav-link">Built-in Procedures</a></li>
+            <li><span class="nav-link nav-soon">Memory Management</span></li>
+          </ul>
+        </div>
+        <div class="nav-group">
+          <span class="nav-group-title">Standard Library</span>
+          <ul>
+            <li><span class="nav-link nav-soon">Overview</span></li>
+            <li><a href="stdlib/fmt.html" class="nav-link">core:fmt</a></li>
+            <li><span class="nav-link nav-soon">core:os</span></li>
+            <li><span class="nav-link nav-soon">base:runtime</span></li>
+          </ul>
+        </div>
+        <div class="nav-group">
+          <span class="nav-group-title">Vendor Libraries</span>
+          <ul>
+            <li><a href="vendor/overview.html" class="nav-link">Vendor Overview</a></li>
+            <li><span class="nav-link nav-soon">Graphics</span></li>
+            <li><span class="nav-link nav-soon">Audio</span></li>
+            <li><span class="nav-link nav-soon">Physics</span></li>
+            <li><span class="nav-link nav-soon">Networking</span></li>
+            <li><span class="nav-link nav-soon">System</span></li>
+          </ul>
+        </div>
+        <div class="nav-group">
+          <span class="nav-group-title">Guides &amp; Examples</span>
+          <ul>
+            <li><span class="nav-link nav-soon">Guides Index</span></li>
+            <li><span class="nav-link nav-soon">Examples Index</span></li>
+          </ul>
+        </div>
+        <div class="nav-group">
+          <span class="nav-group-title">Reference</span>
+          <ul>
+            <li><span class="nav-link nav-soon">Format Verbs</span></li>
+            <li><span class="nav-link nav-soon">Operators</span></li>
+            <li><span class="nav-link nav-soon">Keywords</span></li>
+          </ul>
+        </div>
+        <div class="nav-group">
+          <span class="nav-group-title">Releases</span>
+          <ul>
+            <li><span class="nav-link nav-soon">dev-2026-10</span></li>
+          </ul>
+        </div>
+      </nav>
+    </aside>
+    <div class="sidebar-backdrop"></div>
+
+    <!-- ── Main Content ── -->
+    <div class="main-content">
+      <header>
+        <button class="menu-toggle" aria-label="Open navigation" aria-expanded="false" aria-controls="sidebar">&#9776;</button>
+        <h1 class="page-title">404 — Page Not Found</h1>
+        <p class="page-subtitle">This page doesn't exist (yet) — or the link to it is wrong.</p>
+      </header>
+
+      <main>
+        <section>
+          <h2>Nothing here (yet)</h2>
+          <p>The page you're looking for isn't part of the wiki yet. Sidebar entries marked <em>soon</em> are planned sections that haven't been written yet.</p>
+          <ul>
+            <li><a href="index.html">Home</a> — start from the overview.</li>
+            <li><a href="language/syntax.html">Core Syntax</a> — the first reference page.</li>
+          </ul>
+        </section>
+
+        <footer>
+          <nav class="pager" aria-label="Page navigation">
+            <span></span>
+            <a class="pager-next" href="index.html">Home &rarr;</a>
+          </nav>
+          <p>Odin Wiki &middot; Dark theme for Odin language documentation &middot; Built with inline examples</p>
+        </footer>
+      </main>
+    </div>
+  </div>
+  <script>
+  (function () {
+    var sidebar = document.getElementById('sidebar');
+    var backdrop = document.querySelector('.sidebar-backdrop');
+    var toggle = document.querySelector('.menu-toggle');
+    function setOpen(open) {
+      sidebar.classList.toggle('open', open);
+      backdrop.classList.toggle('show', open);
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    }
+    toggle.addEventListener('click', function () {
+      setOpen(!sidebar.classList.contains('open'));
+    });
+    backdrop.addEventListener('click', function () { setOpen(false); });
+    sidebar.querySelectorAll('a.nav-link').forEach(function (link) {
+      link.addEventListener('click', function () { setOpen(false); });
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') { setOpen(false); }
+    });
+  })();
+  </script>
+</body>
+</html>
