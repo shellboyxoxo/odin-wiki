@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Odin Wiki — Built-in Procedures</title>
+  <link rel="stylesheet" href="../theme.css">
+</head>
+<body>
+  <div class="page-layout">
+    <!-- ── Left Sidebar ── -->
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <span class="brand-title">Odin Wiki</span>
+        <span class="brand-tagline">Odin Programming Language Reference</span>
+      </div>
+      <div class="sidebar-search">
+        <input type="text" placeholder="Search…">
+      </div>
+      <nav class="sidebar-nav">
+        <div class="nav-group">
+          <span class="nav-group-title">Getting Started</span>
+          <ul>
+            <li><a href="../index.html" class="nav-link">Home</a></li>
+            <li><a href="../getting-started.html" class="nav-link">Getting Started</a></li>
+            <li><a href="../hello-world.html" class="nav-link">Hello World</a></li>
+          </ul>
+        </div>
+        <div class="nav-group">
+          <span class="nav-group-title">Core Language</span>
+          <ul>
+            <li><a href="syntax.html" class="nav-link">Core Syntax</a></li>
+            <li><a href="types.html" class="nav-link">Types</a></li>
+            <li><a href="procedures.html" class="nav-link">Procedures</a></li>
+            <li><a href="builtins.html" class="nav-link active current-section">Built-in Procedures</a></li>
+            <li><a href="memory.html" class="nav-link">Memory Management</a></li>
+          </ul>
+        </div>
+        <div class="nav-group">
+          <span class="nav-group-title">Standard Library</span>
+          <ul>
+            <li><a href="../stdlib/overview.html" class="nav-link">Overview</a></li>
+            <li><a href="../stdlib/fmt.html" class="nav-link">core:fmt</a></li>
+            <li><a href="../stdlib/os.html" class="nav-link">core:os</a></li>
+            <li><a href="../stdlib/mem.html" class="nav-link">base:runtime</a></li>
+          </ul>
+        </div>
+        <div class="nav-group">
+          <span class="nav-group-title">Vendor Libraries</span>
+          <ul>
+            <li><a href="../vendor/overview.html" class="nav-link">Vendor Overview</a></li>
+            <li><a href="../vendor/graphics.html" class="nav-link">Graphics</a></li>
+            <li><a href="../vendor/audio.html" class="nav-link">Audio</a></li>
+            <li><a href="../vendor/physics.html" class="nav-link">Physics</a></li>
+            <li><a href="../vendor/networking.html" class="nav-link">Networking</a></li>
+            <li><a href="../vendor/system.html" class="nav-link">System</a></li>
+          </ul>
+        </div>
+        <div class="nav-group">
+          <span class="nav-group-title">Guides &amp; Examples</span>
+          <ul>
+            <li><a href="../guides/getting-started.html" class="nav-link">Guides Index</a></li>
+            <li><a href="../examples/index.html" class="nav-link">Examples Index</a></li>
+          </ul>
+        </div>
+        <div class="nav-group">
+          <span class="nav-group-title">Reference</span>
+          <ul>
+            <li><a href="../reference/format-verbs.html" class="nav-link">Format Verbs</a></li>
+            <li><a href="../reference/operators.html" class="nav-link">Operators</a></li>
+            <li><a href="../reference/keywords.html" class="nav-link">Keywords</a></li>
+          </ul>
+        </div>
+        <div class="nav-group">
+          <span class="nav-group-title">Releases</span>
+          <ul>
+            <li><a href="../releases/dev-2026-10.html" class="nav-link">dev-2026-10</a></li>
+          </ul>
+        </div>
+      </nav>
+    </aside>
+
+    <!-- ── Main Content ── -->
+    <div class="main-content">
+      <header>
+        <h1 class="page-title">Built-in Procedures</h1>
+        <p class="page-subtitle">Quick reference for Odin's built-in procedures — compiler-defined and core-library-defined.</p>
+      </header>
+
+      <main>
+        <section>
+          <h2>Overview</h2>
+          <p>Odin has two categories of built-in procedures:</p>
+          <ol>
+            <li><strong>Compiler-defined</strong> — built into the language itself.</li>
+            <li><strong>Core library-defined</strong> — live in <code>base:runtime</code>.</li>
+          </ol>
+        </section>
+
+        <section>
+          <h2>Compiler-Defined Built-ins</h2>
+          <table>
+            <thead>
+              <tr><th>Procedure</th><th>Description</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>len(x)</code></td><td>Length of string, array, slice, dynamic array, map, etc.</td></tr>
+              <tr><td><code>cap(x)</code></td><td>Capacity of array, slice, dynamic array, map, etc.</td></tr>
+              <tr><td><code>size_of(T)</code></td><td>Size of a type in bytes</td></tr>
+              <tr><td><code>align_of(T)</code></td><td>Alignment of a type in bytes</td></tr>
+              <tr><td><code>offset_of(T, field)</code></td><td>Byte offset of a field within a struct</td></tr>
+              <tr><td><code>type_of(x)</code></td><td>Type of an expression</td></tr>
+              <tr><td><code>typeid_of(T)</code></td><td>The <code>typeid</code> of a type</td></tr>
+              <tr><td><code>type_info_of(T)</code></td><td>Runtime type information of a type</td></tr>
+              <tr><td><code>min(a, b, ...)</code></td><td>Minimum of the values</td></tr>
+              <tr><td><code>max(a, b, ...)</code></td><td>Maximum of the values</td></tr>
+              <tr><td><code>min(T)</code>, <code>max(T)</code></td><td>Smallest/largest value of a type</td></tr>
+              <tr><td><code>clamp(x, lo, hi)</code></td><td>Clamp value between bounds</td></tr>
+              <tr><td><code>abs(x)</code></td><td>Absolute value</td></tr>
+              <tr><td><code>swizzle(x, indices...)</code></td><td>Swizzle operations on vectors</td></tr>
+              <tr><td><code>complex</code>, <code>quaternion</code></td><td>Complex number / quaternion constructors</td></tr>
+              <tr><td><code>real</code>, <code>imag</code>, <code>jmag</code>, <code>kmag</code></td><td>Component accessors for complex/quaternion</td></tr>
+              <tr><td><code>conj</code></td><td>Complex conjugate</td></tr>
+              <tr><td><code>expand_values(x)</code></td><td>Expand struct/array into multiple values</td></tr>
+              <tr><td><code>compress_values(...)</code></td><td>Pack multiple values into struct/array</td></tr>
+              <tr><td><code>soa_zip</code>, <code>soa_unzip</code></td><td>Structure-of-Arrays operations</td></tr>
+              <tr><td><code>raw_data(x)</code></td><td>Raw data pointer</td></tr>
+              <tr><td><code>unreachable()</code></td><td>Marks unreachable code</td></tr>
+            </tbody>
+          </table>
+        </section>
+        <section>
+          <h2>Core Library Built-ins (<code>base:runtime</code>)</h2>
+          <p>Memory management and container helpers:</p>
+          <table>
+            <thead>
+              <tr><th>Procedure</th><th>Description</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>new(T)</code></td><td>Allocate new zeroed value of type T</td></tr>
+              <tr><td><code>make(T, n)</code></td><td>Make slice/dynamic array of length n</td></tr>
+              <tr><td><code>delete(x)</code></td><td>Deallocate memory</td></tr>
+              <tr><td><code>append(x, v)</code></td><td>Append to dynamic array</td></tr>
+              <tr><td><code>pop(x)</code></td><td>Pop from dynamic array</td></tr>
+              <tr><td><code>clear(x)</code></td><td>Clear container</td></tr>
+              <tr><td><code>resize(x, n)</code></td><td>Resize dynamic array</td></tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section>
+          <h2>Example</h2>
+          <pre><code class="language-odin"><span class="token-keyword">package</span> main
+
+<span class="token-keyword">import</span> <span class="token-string">"core:fmt"</span>
+<span class="token-keyword">import</span> <span class="token-string">"base:runtime"</span>
+
+main :: proc() {
+    arr := [3]int{7, 8, 9}
+    fmt.println(len(arr))           <span class="token-comment">// 3</span>
+    fmt.println(size_of(int))       <span class="token-comment">// 8 (on 64-bit)</span>
+    fmt.println(type_of(42))        <span class="token-comment">// int</span>
+    fmt.println(min(10, 20, 5))     <span class="token-comment">// 5</span>
+    fmt.println(clamp(-5, 0, 100))  <span class="token-comment">// 0</span>
+
+    <span class="token-comment">// Memory management</span>
+    ptr := new(int)                 <span class="token-comment">// allocate</span>
+    ptr^ = 42
+    fmt.println(ptr^)               <span class="token-comment">// 42</span>
+    delete(ptr)                     <span class="token-comment">// deallocate</span>
+
+    <span class="token-comment">// expand_values / compress_values</span>
+    Vector3 :: struct { x, y, z: f32 }
+    v := Vector3{1, 4, 9}
+    x, y, z := expand_values(v)
+    fmt.println(x, y, z)            <span class="token-comment">// 1 4 9</span>
+
+    a := compress_values(1, 2, 3)   <span class="token-comment">// [3]int{1, 2, 3}</span>
+    fmt.println(a)
+}</code></pre>
+        </section>
+
+        <section>
+          <h2>Reference</h2>
+          <ul>
+            <li>Built-in procedures wiki: <a href="https://github.com/odin-lang/Odin/wiki/Built-in-Procedures" target="_blank">github.com/odin-lang/Odin/wiki/Built-in-Procedures</a></li>
+            <li>Odin docs: <a href="https://odin-lang.org/docs/" target="_blank">odin-lang.org/docs</a></li>
+          </ul>
+        </section>
+
+        <footer>
+          <p>Odin Wiki &middot; Dark theme for Odin language documentation &middot; Built with inline examples</p>
+        </footer>
+      </main>
+    </div>
+  </div>
+</body>
+</html>

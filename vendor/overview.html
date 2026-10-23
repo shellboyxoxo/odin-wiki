@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Odin Wiki — Vendor Libraries</title>
+  <link rel="stylesheet" href="../theme.css">
+</head>
+<body>
+  <div class="page-layout">
+    <!-- ── Left Sidebar ── -->
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <span class="brand-title">Odin Wiki</span>
+        <span class="brand-tagline">Odin Programming Language Reference</span>
+      </div>
+      <div class="sidebar-search">
+        <input type="text" placeholder="Search…">
+      </div>
+      <nav class="sidebar-nav">
+        <div class="nav-group">
+          <span class="nav-group-title">Getting Started</span>
+          <ul>
+            <li><a href="../index.html" class="nav-link">Home</a></li>
+            <li><a href="../getting-started.html" class="nav-link">Getting Started</a></li>
+            <li><a href="../hello-world.html" class="nav-link">Hello World</a></li>
+          </ul>
+        </div>
+        <div class="nav-group">
+          <span class="nav-group-title">Core Language</span>
+          <ul>
+            <li><a href="../language/syntax.html" class="nav-link">Core Syntax</a></li>
+            <li><a href="../language/types.html" class="nav-link">Types</a></li>
+            <li><a href="../language/procedures.html" class="nav-link">Procedures</a></li>
+            <li><a href="../language/builtins.html" class="nav-link">Built-in Procedures</a></li>
+            <li><a href="../language/memory.html" class="nav-link">Memory Management</a></li>
+          </ul>
+        </div>
+        <div class="nav-group">
+          <span class="nav-group-title">Standard Library</span>
+          <ul>
+            <li><a href="../stdlib/overview.html" class="nav-link">Overview</a></li>
+            <li><a href="../stdlib/fmt.html" class="nav-link">core:fmt</a></li>
+            <li><a href="../stdlib/os.html" class="nav-link">core:os</a></li>
+            <li><a href="../stdlib/mem.html" class="nav-link">base:runtime</a></li>
+          </ul>
+        </div>
+        <div class="nav-group">
+          <span class="nav-group-title">Vendor Libraries</span>
+          <ul>
+            <li><a href="overview.html" class="nav-link active current-section">Vendor Overview</a></li>
+            <li><a href="graphics.html" class="nav-link">Graphics</a></li>
+            <li><a href="audio.html" class="nav-link">Audio</a></li>
+            <li><a href="physics.html" class="nav-link">Physics</a></li>
+            <li><a href="networking.html" class="nav-link">Networking</a></li>
+            <li><a href="system.html" class="nav-link">System</a></li>
+          </ul>
+        </div>
+        <div class="nav-group">
+          <span class="nav-group-title">Guides &amp; Examples</span>
+          <ul>
+            <li><a href="../guides/getting-started.html" class="nav-link">Guides Index</a></li>
+            <li><a href="../examples/index.html" class="nav-link">Examples Index</a></li>
+          </ul>
+        </div>
+        <div class="nav-group">
+          <span class="nav-group-title">Reference</span>
+          <ul>
+            <li><a href="../reference/format-verbs.html" class="nav-link">Format Verbs</a></li>
+            <li><a href="../reference/operators.html" class="nav-link">Operators</a></li>
+            <li><a href="../reference/keywords.html" class="nav-link">Keywords</a></li>
+          </ul>
+        </div>
+        <div class="nav-group">
+          <span class="nav-group-title">Releases</span>
+          <ul>
+            <li><a href="../releases/dev-2026-10.html" class="nav-link">dev-2026-10</a></li>
+          </ul>
+        </div>
+      </nav>
+    </aside>
+
+    <!-- ── Main Content ── -->
+    <div class="main-content">
+      <header>
+        <h1 class="page-title">Vendor Libraries</h1>
+        <p class="page-subtitle">The <code>vendor:</code> collection — Odin's bindings to popular third-party libraries.</p>
+      </header>
+
+      <main>
+        <section>
+          <h2>Overview</h2>
+          <p>This page documents the <strong>vendor</strong> library collection in Odin — bindings to popular third-party libraries for graphics, windowing, audio, physics, networking, and more.</p>
+          <ul>
+            <li><strong>Collection:</strong> <code>vendor</code></li>
+            <li><strong>Package count:</strong> 54 packages</li>
+            <li><strong>Declaration count:</strong> 26,903</li>
+            <li><strong>License:</strong> zlib</li>
+            <li><strong>Source:</strong> <code>odin-lang/Odin/vendor</code></li>
+          </ul>
+          <p>All vendor packages are shipped with the Odin compiler and can be imported directly with the <code>vendor:</code> prefix.</p>
+        </section>
+
+        <section>
+          <h2>Categories</h2>
+          <h3>Graphics &amp; Windowing</h3>
+          <table>
+            <thead>
+              <tr><th>Package</th><th>Description</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>vendor:raylib</code></td><td>Simple and easy-to-use game programming library</td></tr>
+              <tr><td><code>vendor:sdl3</code></td><td>Simple DirectMedia Layer 3 — cross-platform multimedia library</td></tr>
+              <tr><td><code>vendor:wgpu</code></td><td>WebGPU bindings for graphics and compute</td></tr>
+              <tr><td><code>vendor:glfw</code></td><td>OpenGL, Vulkan, and windowing library</td></tr>
+              <tr><td><code>vendor:vulkan</code></td><td>Vulkan graphics API bindings</td></tr>
+              <tr><td><code>vendor:egl</code></td><td>EGL interface between rendering APIs and native windowing</td></tr>
+              <tr><td><code>vendor:wasapi</code></td><td>Windows Audio Session API bindings</td></tr>
+            </tbody>
+          </table>
+          <h3>Audio</h3>
+          <table>
+            <thead>
+              <tr><th>Package</th><th>Description</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>vendor:miniaudio</code></td><td>Cross-platform audio engine (playback, capture, encoding)</td></tr>
+              <tr><td><code>vendor:openal</code></td><td>OpenAL — 3D audio library</td></tr>
+              <tr><td><code>vendor:opusfile</code></td><td>Opus audio decoding</td></tr>
+              <tr><td><code>vendor:libvorbis</code></td><td>Vorbis audio decoding</td></tr>
+            </tbody>
+          </table>
+          <h3>Physics</h3>
+          <table>
+            <thead>
+              <tr><th>Package</th><th>Description</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>vendor:box2d</code></td><td>2D physics simulation</td></tr>
+              <tr><td><code>vendor:box3d</code></td><td>3D physics simulation</td></tr>
+              <tr><td><code>vendor:ode</code></td><td>Open Dynamics Engine</td></tr>
+            </tbody>
+          </table>
+          <h3>Networking, Crypto &amp; Compression</h3>
+          <table>
+            <thead>
+              <tr><th>Package</th><th>Description</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>vendor:curl</code></td><td>URL transfer library (HTTP, FTP, etc.)</td></tr>
+              <tr><td><code>vendor:openssl</code></td><td>Cryptography and TLS/SSL</td></tr>
+              <tr><td><code>vendor:zlib</code></td><td>General-purpose compression</td></tr>
+              <tr><td><code>vendor:libpng</code></td><td>PNG image encoding/decoding</td></tr>
+              <tr><td><code>vendor:OpenEXRCore</code></td><td>OpenEXR high-dynamic-range image format</td></tr>
+            </tbody>
+          </table>
+          <h3>System &amp; Platform</h3>
+          <table>
+            <thead>
+              <tr><th>Package</th><th>Description</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>vendor:windows</code></td><td>Windows API bindings</td></tr>
+              <tr><td><code>vendor:sys/windows</code></td><td>Windows system-level bindings</td></tr>
+              <tr><td><code>vendor:sys/linux</code></td><td>Linux system-level bindings</td></tr>
+              <tr><td><code>vendor:libc-shim</code></td><td>C standard library compatibility shim</td></tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section>
+          <h2>Example Usage</h2>
+          <h3><code>vendor:raylib</code> — Window and Drawing</h3>
+          <pre><code class="language-odin"><span class="token-keyword">package</span> main
+
+<span class="token-keyword">import</span> <span class="token-string">"vendor:raylib"</span>
+<span class="token-keyword">import</span> <span class="token-string">"core:fmt"</span>
+
+main :: proc() {
+    rl.InitWindow(800, 450, <span class="token-string">"Odin + raylib"</span>)
+    <span class="token-keyword">defer</span> rl.CloseWindow()
+
+    <span class="token-keyword">for</span> <span class="token-keyword">not</span> rl.WindowShouldClose() {
+        rl.BeginDrawing()
+        rl.ClearBackground(rl.RAYWHITE)
+        rl.DrawText(<span class="token-string">"Hello from Odin!"</span>, 190, 200, 20, rl.VIOLET)
+        rl.EndDrawing()
+    }
+}</code></pre>
+          <p>Compile with: <code>odin run .</code></p>
+          <h3><code>vendor:sdl3</code> — Event Loop</h3>
+          <pre><code class="language-odin"><span class="token-keyword">package</span> main
+
+<span class="token-keyword">import</span> <span class="token-string">"vendor:sdl3"</span>
+<span class="token-keyword">import</span> <span class="token-string">"core:fmt"</span>
+
+main :: proc() {
+    sdl.Init(sdl.INIT_VIDEO)
+    <span class="token-keyword">defer</span> sdl.Quit()
+
+    window := sdl.CreateWindow(<span class="token-string">"Odin SDL3"</span>, 800, 600, sdl.WINDOW_SHOWN)
+    <span class="token-keyword">defer</span> sdl.DestroyWindow(window)
+
+    event := sdl.Event{}
+    running := <span class="token-keyword">true</span>
+    <span class="token-keyword">for</span> running {
+        <span class="token-keyword">for</span> sdl.PollEvent(&amp;event) != 0 {
+            <span class="token-keyword">if</span> event.type == sdl.EVENT_QUIT {
+                running = <span class="token-keyword">false</span>
+            }
+        }
+    }
+}</code></pre>
+          <h3><code>vendor:curl</code> — HTTP GET</h3>
+          <pre><code class="language-odin"><span class="token-keyword">package</span> main
+
+<span class="token-keyword">import</span> <span class="token-string">"vendor:curl"</span>
+<span class="token-keyword">import</span> <span class="token-string">"core:fmt"</span>
+<span class="token-keyword">import</span> <span class="token-string">"core:os"</span>
+
+main :: proc() {
+    curl.global_init(curl.INIT_ALL)
+    <span class="token-keyword">defer</span> curl.global_cleanup()
+
+    easy := curl.easy_init()
+    <span class="token-keyword">defer</span> curl.easy_cleanup(easy)
+
+    curl.easy_setopt(easy, curl.OPT_URL, <span class="token-string">"https://odin-lang.org/"</span>)
+    code := curl.easy_perform(easy)
+    fmt.println(<span class="token-string">"HTTP code:"</span>, code)
+}</code></pre>
+        </section>
+
+        <section>
+          <h2>Notes</h2>
+          <ul>
+            <li>All vendor bindings are maintained in the <code>odin-lang/Odin</code> repository under the <code>vendor/</code> directory.</li>
+            <li>Some vendor packages have platform-specific dependencies (e.g. system libraries that must be installed separately).</li>
+            <li>See <a href="https://pkg.odin-lang.org/vendor/" target="_blank">pkg.odin-lang.org/vendor</a> for the full API reference of each package.</li>
+          </ul>
+        </section>
+
+        <footer>
+          <p>Odin Wiki &middot; Dark theme for Odin language documentation &middot; Built with inline examples</p>
+        </footer>
+      </main>
+    </div>
+  </div>
+</body>
+</html>

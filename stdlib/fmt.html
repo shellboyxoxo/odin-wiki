@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Odin Wiki — core:fmt</title>
+  <link rel="stylesheet" href="../theme.css">
+</head>
+<body>
+  <div class="page-layout">
+    <!-- ── Left Sidebar ── -->
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <span class="brand-title">Odin Wiki</span>
+        <span class="brand-tagline">Odin Programming Language Reference</span>
+      </div>
+      <div class="sidebar-search">
+        <input type="text" placeholder="Search…">
+      </div>
+      <nav class="sidebar-nav">
+        <div class="nav-group">
+          <span class="nav-group-title">Getting Started</span>
+          <ul>
+            <li><a href="../index.html" class="nav-link">Home</a></li>
+            <li><a href="../getting-started.html" class="nav-link">Getting Started</a></li>
+            <li><a href="../hello-world.html" class="nav-link">Hello World</a></li>
+          </ul>
+        </div>
+        <div class="nav-group">
+          <span class="nav-group-title">Core Language</span>
+          <ul>
+            <li><a href="../language/syntax.html" class="nav-link">Core Syntax</a></li>
+            <li><a href="../language/types.html" class="nav-link">Types</a></li>
+            <li><a href="../language/procedures.html" class="nav-link">Procedures</a></li>
+            <li><a href="../language/builtins.html" class="nav-link">Built-in Procedures</a></li>
+            <li><a href="../language/memory.html" class="nav-link">Memory Management</a></li>
+          </ul>
+        </div>
+        <div class="nav-group">
+          <span class="nav-group-title">Standard Library</span>
+          <ul>
+            <li><a href="overview.html" class="nav-link">Overview</a></li>
+            <li><a href="fmt.html" class="nav-link active current-section">core:fmt</a></li>
+            <li><a href="os.html" class="nav-link">core:os</a></li>
+            <li><a href="mem.html" class="nav-link">base:runtime</a></li>
+          </ul>
+        </div>
+        <div class="nav-group">
+          <span class="nav-group-title">Vendor Libraries</span>
+          <ul>
+            <li><a href="../vendor/overview.html" class="nav-link">Vendor Overview</a></li>
+            <li><a href="../vendor/graphics.html" class="nav-link">Graphics</a></li>
+            <li><a href="../vendor/audio.html" class="nav-link">Audio</a></li>
+            <li><a href="../vendor/physics.html" class="nav-link">Physics</a></li>
+            <li><a href="../vendor/networking.html" class="nav-link">Networking</a></li>
+            <li><a href="../vendor/system.html" class="nav-link">System</a></li>
+          </ul>
+        </div>
+        <div class="nav-group">
+          <span class="nav-group-title">Guides &amp; Examples</span>
+          <ul>
+            <li><a href="../guides/getting-started.html" class="nav-link">Guides Index</a></li>
+            <li><a href="../examples/index.html" class="nav-link">Examples Index</a></li>
+          </ul>
+        </div>
+        <div class="nav-group">
+          <span class="nav-group-title">Reference</span>
+          <ul>
+            <li><a href="../reference/format-verbs.html" class="nav-link">Format Verbs</a></li>
+            <li><a href="../reference/operators.html" class="nav-link">Operators</a></li>
+            <li><a href="../reference/keywords.html" class="nav-link">Keywords</a></li>
+          </ul>
+        </div>
+        <div class="nav-group">
+          <span class="nav-group-title">Releases</span>
+          <ul>
+            <li><a href="../releases/dev-2026-10.html" class="nav-link">dev-2026-10</a></li>
+          </ul>
+        </div>
+      </nav>
+    </aside>
+
+    <!-- ── Main Content ── -->
+    <div class="main-content">
+      <header>
+        <h1 class="page-title">core:fmt</h1>
+        <p class="page-subtitle">Formatted I/O — format verbs, flags, and the key procedures of the <code>fmt</code> package.</p>
+      </header>
+
+      <main>
+        <section>
+          <h2>Package Overview</h2>
+          <p><code>core:fmt</code> provides formatted input/output procedures with format verbs derived from C's <code>printf</code> but simplified.</p>
+          <ul>
+            <li><strong>Collection:</strong> <code>core</code></li>
+            <li><strong>Package:</strong> <code>fmt</code></li>
+            <li><strong>Import path:</strong> <code>core:fmt</code></li>
+            <li><strong>Procedures:</strong> 82</li>
+            <li><strong>Types:</strong> 4 (<code>Info</code>, <code>Info_State</code>, <code>Register_User_Formatter_Error</code>, <code>User_Formatter</code>)</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Format Verbs</h2>
+          <h3>General</h3>
+          <table>
+            <thead>
+              <tr><th>Verb</th><th>Meaning</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>%v</code></td><td>Value in default format</td></tr>
+              <tr><td><code>%#v</code></td><td>Expanded format (newlines, indentation)</td></tr>
+              <tr><td><code>%w</code></td><td>Odin-syntax representation of the value</td></tr>
+              <tr><td><code>%T</code></td><td>Odin-syntax representation of the type</td></tr>
+              <tr><td><code>%%</code></td><td>Literal percent sign</td></tr>
+              <tr><td><code>{{</code></td><td>Literal open brace</td></tr>
+              <tr><td><code>}}</code></td><td>Literal close brace</td></tr>
+              <tr><td><code>{:v}</code></td><td>Python-like equivalent of <code>%v</code></td></tr>
+            </tbody>
+          </table>
+          <h3>Boolean</h3>
+          <table>
+            <thead>
+              <tr><th>Verb</th><th>Meaning</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>%t</code></td><td>The word <code>"true"</code> or <code>"false"</code></td></tr>
+            </tbody>
+          </table>
+          <h3>Integer</h3>
+          <table>
+            <thead>
+              <tr><th>Verb</th><th>Meaning</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>%b</code></td><td>Base 2 (binary)</td></tr>
+              <tr><td><code>%c</code></td><td>Character represented by Unicode code point</td></tr>
+              <tr><td><code>%r</code></td><td>Synonym for <code>%c</code></td></tr>
+              <tr><td><code>%o</code></td><td>Base 8 (octal)</td></tr>
+              <tr><td><code>%d</code> / <code>%i</code></td><td>Base 10 (decimal)</td></tr>
+              <tr><td><code>%z</code></td><td>Base 12 (dozenal)</td></tr>
+              <tr><td><code>%x</code></td><td>Base 16 hex (lowercase a-f)</td></tr>
+              <tr><td><code>%X</code></td><td>Base 16 hex (uppercase A-F)</td></tr>
+              <tr><td><code>%U</code></td><td>Unicode format: <code>U+1234</code></td></tr>
+            </tbody>
+          </table>
+          <h3>Byte Size</h3>
+          <table>
+            <thead>
+              <tr><th>Verb</th><th>Meaning</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>%m</code></td><td>Bytes in best unit (e.g. <code>123.45mib</code>)</td></tr>
+              <tr><td><code>%M</code></td><td>Bytes in best unit (e.g. <code>123.45MiB</code>)</td></tr>
+            </tbody>
+          </table>
+          <h3>Floating-Point</h3>
+          <table>
+            <thead>
+              <tr><th>Verb</th><th>Meaning</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>%e</code> / <code>%E</code></td><td>Scientific notation</td></tr>
+              <tr><td><code>%f</code> / <code>%F</code></td><td>Decimal point, no exponent</td></tr>
+              <tr><td><code>%g</code> / <code>%G</code></td><td>Synonyms for <code>%f</code> with default max precision</td></tr>
+              <tr><td><code>%h</code> / <code>%H</code></td><td>Hexadecimal with <code>0h</code> / <code>0H</code> prefix</td></tr>
+            </tbody>
+          </table>
+          <h3>Strings &amp; Bytes</h3>
+          <table>
+            <thead>
+              <tr><th>Verb</th><th>Meaning</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>%s</code></td><td>Uninterpreted bytes of string or slice</td></tr>
+              <tr><td><code>%q</code></td><td>Double-quoted string, Odin-escaped</td></tr>
+              <tr><td><code>%x</code> / <code>%X</code></td><td>Base 16 hex, two chars per byte</td></tr>
+            </tbody>
+          </table>
+          <h3>Pointers &amp; Memory</h3>
+          <table>
+            <thead>
+              <tr><th>Verb</th><th>Meaning</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>%p</code></td><td>Address in base 16 with <code>0x</code> prefix</td></tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section>
+          <h2>Format Flags</h2>
+          <table>
+            <thead>
+              <tr><th>Flag</th><th>Effect</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>+</code></td><td>Always print sign for numeric values</td></tr>
+              <tr><td><code>-</code></td><td>Left-justify (pad right)</td></tr>
+              <tr><td><code>#</code></td><td>Alternate format: <code>0b</code>, <code>0o</code>, <code>0z</code>, <code>0x</code> prefixes</td></tr>
+              <tr><td><code>&nbsp;</code></td><td>Space for elided sign</td></tr>
+              <tr><td><code>0</code></td><td>Pad with leading zeros</td></tr>
+            </tbody>
+          </table>
+          <p>Width is specified by a decimal number after <code>%</code>. Precision follows a period (<code>.2f</code>).</p>
+        </section>
+        <section>
+          <h2>Key Procedures</h2>
+          <h3>Output to stdout</h3>
+          <table>
+            <thead>
+              <tr><th>Procedure</th><th>Description</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>print(args, sep, flush)</code></td><td>Default print settings to stdout</td></tr>
+              <tr><td><code>printf(fmt, args, flush)</code></td><td>Format string to stdout</td></tr>
+              <tr><td><code>printfln(fmt, args, flush)</code></td><td>Format string + newline to stdout</td></tr>
+              <tr><td><code>println(args, sep, flush)</code></td><td>Print with newline to stdout</td></tr>
+            </tbody>
+          </table>
+          <h3>Output to stderr</h3>
+          <table>
+            <thead>
+              <tr><th>Procedure</th><th>Description</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>eprint</code>, <code>eprintf</code>, <code>eprintfln</code>, <code>eprintln</code></td><td>Same as stdout variants but to stderr</td></tr>
+            </tbody>
+          </table>
+          <h3>Output to file</h3>
+          <table>
+            <thead>
+              <tr><th>Procedure</th><th>Description</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>fprint(f, args, sep, flush)</code></td><td>Write to <code>^os.File</code></td></tr>
+              <tr><td><code>fprintf(f, fmt, args, flush)</code></td><td>Format to <code>^os.File</code></td></tr>
+              <tr><td><code>fprintfln(f, fmt, args, flush)</code></td><td>Format + newline to <code>^os.File</code></td></tr>
+              <tr><td><code>fprintln(f, args, sep, flush)</code></td><td>Print + newline to <code>^os.File</code></td></tr>
+            </tbody>
+          </table>
+         <h3>Allocated string output</h3>
+         <table>
+           <thead>
+             <tr><th>Procedure</th><th>Description</th></tr>
+           </thead>
+           <tbody>
+             <tr><td><code>aprint(args, sep, allocator)</code></td><td>Create formatted string</td></tr>
+             <tr><td><code>aprintf(fmt, args, allocator, newline)</code></td><td>Create formatted string with format</td></tr>
+             <tr><td><code>aprintfln(fmt, args, allocator)</code></td><td>Create formatted string + newline</td></tr>
+           </tbody>
+         </table>
+         <h3>Temporary allocator string output</h3>
+         <table>
+           <thead>
+             <tr><th>Procedure</th><th>Description</th></tr>
+           </thead>
+           <tbody>
+             <tr><td><code>tprint(args, sep)</code></td><td>Temp-allocated formatted string</td></tr>
+             <tr><td><code>tprintf(fmt, args, newline)</code></td><td>Temp-allocated formatted string</td></tr>
+             <tr><td><code>tprintfln(fmt, args)</code></td><td>Temp-allocated formatted string + newline</td></tr>
+           </tbody>
+         </table>
+         <h3>Error &amp; assertion formatting</h3>
+         <table>
+           <thead>
+             <tr><th>Procedure</th><th>Description</th></tr>
+           </thead>
+           <tbody>
+             <tr><td><code>panicf(fmt, args)</code></td><td>Panic with formatted message</td></tr>
+             <tr><td><code>assertf(cond, fmt, args)</code></td><td>Assert with formatted message</td></tr>
+             <tr><td><code>ensuref(cond, fmt, args)</code></td><td>Ensure condition with formatted message</td></tr>
+           </tbody>
+         </table>
+       </section>
+
+       <section>
+         <h2>Example</h2>
+         <pre><code class="language-odin"><span class="token-keyword">import</span> <span class="token-string">"core:fmt"</span>
+
+main :: proc() {
+   name := <span class="token-string">"Odin"</span>
+   version := <span class="token-string">"dev-2026-10"</span>
+   count := 42
+   price := 19.99
+
+   fmt.printfln(<span class="token-string">"Welcome to %s, version %s"</span>, name, version)
+   fmt.println(<span class="token-string">"Count: %d, Price: %.2f"</span>, count, price)
+   fmt.println(<span class="token-string">"Type of version: %T"</span>, version)
+   fmt.println(<span class="token-string">"Hex: %x, Binary: %b"</span>, 255, 255)
+   fmt.println(<span class="token-string">"Pointer: %p"</span>, &amp;count)
+}</code></pre>
+       </section>
+
+       <section>
+         <h2>Format Errors</h2>
+         <p>Invalid arguments produce descriptive error strings in output:</p>
+         <ul>
+           <li><code>%!(BAD ENUM VALUE)</code></li>
+           <li><code>%!(EXTRA, ...)</code></li>
+           <li><code>%!(MISSING ARGUMENT)</code></li>
+           <li><code>%!(BAD WIDTH)</code></li>
+           <li><code>%!(BAD PRECISION)</code></li>
+           <li><code>%!(NO VERB)</code></li>
+           <li><code>%!(BAD ARGUMENT NUMBER)</code></li>
+           <li><code>%!(MISSING CLOSE BRACE)</code></li>
+         </ul>
+       </section>
+
+       <section>
+         <h2>Reference</h2>
+         <p>Full API documentation: <a href="https://pkg.odin-lang.org/core/fmt/" target="_blank">pkg.odin-lang.org/core/fmt</a></p>
+       </section>
+
+       <footer>
+         <p>Odin Wiki &middot; Dark theme for Odin language documentation &middot; Built with inline examples</p>
+       </footer>
+     </main>
+   </div>
+ </div>
+</body>
+</html>

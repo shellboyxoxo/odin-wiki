@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Odin Wiki — Getting Started</title>
+  <link rel="stylesheet" href="theme.css">
+</head>
+<body>
+  <div class="page-layout">
+    <!-- ── Left Sidebar ── -->
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <span class="brand-title">Odin Wiki</span>
+        <span class="brand-tagline">Odin Programming Language Reference</span>
+      </div>
+      <div class="sidebar-search">
+        <input type="text" placeholder="Search…">
+      </div>
+      <nav class="sidebar-nav">
+        <div class="nav-group">
+          <span class="nav-group-title">Getting Started</span>
+          <ul>
+            <li><a href="index.html" class="nav-link">Home</a></li>
+            <li><a href="getting-started.html" class="nav-link active current-section">Getting Started</a></li>
+            <li><a href="hello-world.html" class="nav-link">Hello World</a></li>
+          </ul>
+        </div>
+        <div class="nav-group">
+          <span class="nav-group-title">Core Language</span>
+          <ul>
+            <li><a href="language/syntax.html" class="nav-link">Core Syntax</a></li>
+            <li><a href="language/types.html" class="nav-link">Types</a></li>
+            <li><a href="language/procedures.html" class="nav-link">Procedures</a></li>
+            <li><a href="language/builtins.html" class="nav-link">Built-in Procedures</a></li>
+            <li><a href="language/memory.html" class="nav-link">Memory Management</a></li>
+          </ul>
+        </div>
+        <div class="nav-group">
+          <span class="nav-group-title">Standard Library</span>
+          <ul>
+            <li><a href="stdlib/overview.html" class="nav-link">Overview</a></li>
+            <li><a href="stdlib/fmt.html" class="nav-link">core:fmt</a></li>
+            <li><a href="stdlib/os.html" class="nav-link">core:os</a></li>
+            <li><a href="stdlib/mem.html" class="nav-link">base:runtime</a></li>
+          </ul>
+        </div>
+        <div class="nav-group">
+          <span class="nav-group-title">Vendor Libraries</span>
+          <ul>
+            <li><a href="vendor/overview.html" class="nav-link">Vendor Overview</a></li>
+            <li><a href="vendor/graphics.html" class="nav-link">Graphics</a></li>
+            <li><a href="vendor/audio.html" class="nav-link">Audio</a></li>
+            <li><a href="vendor/physics.html" class="nav-link">Physics</a></li>
+            <li><a href="vendor/networking.html" class="nav-link">Networking</a></li>
+            <li><a href="vendor/system.html" class="nav-link">System</a></li>
+          </ul>
+        </div>
+        <div class="nav-group">
+          <span class="nav-group-title">Guides &amp; Examples</span>
+          <ul>
+            <li><a href="guides/getting-started.html" class="nav-link">Guides Index</a></li>
+            <li><a href="examples/index.html" class="nav-link">Examples Index</a></li>
+          </ul>
+        </div>
+        <div class="nav-group">
+          <span class="nav-group-title">Reference</span>
+          <ul>
+            <li><a href="reference/format-verbs.html" class="nav-link">Format Verbs</a></li>
+            <li><a href="reference/operators.html" class="nav-link">Operators</a></li>
+            <li><a href="reference/keywords.html" class="nav-link">Keywords</a></li>
+          </ul>
+        </div>
+        <div class="nav-group">
+          <span class="nav-group-title">Releases</span>
+          <ul>
+            <li><a href="releases/dev-2026-10.html" class="nav-link">dev-2026-10</a></li>
+          </ul>
+        </div>
+      </nav>
+    </aside>
+
+    <!-- ── Main Content ── -->
+    <div class="main-content">
+      <header>
+        <h1 class="page-title">Getting Started</h1>
+        <p class="page-subtitle">Install Odin, verify your toolchain, and run your first program.</p>
+      </header>
+
+      <main>
+        <section>
+          <h2>Requirements</h2>
+          <ul>
+            <li>Odin <code>dev-2026-10</code> or newer — check with <code>odin version</code>.</li>
+            <li>Any 64-bit platform the Odin compiler targets (Linux, Windows, macOS, WASM).</li>
+            <li>No C compiler required for basic programs — Odin ships with its own runtime.</li>
+          </ul>
+          <div class="callout callout-info">
+            <div class="callout-title">Vendor bindings may need system libraries</div>
+            <div>Third-party bindings in the <code>vendor:</code> collection (for example <code>vendor:sdl3</code>) can depend on system libraries that must be installed separately. See <a href="vendor/overview.html">Vendor Overview</a>.</div>
+          </div>
+        </section>
+
+        <section>
+          <h2>Installation</h2>
+          <table>
+            <thead>
+              <tr><th>Platform</th><th>How</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Arch Linux</td><td><code>sudo pacman -S odin</code></td></tr>
+              <tr><td>Linux (others)</td><td>Download the pre-built binary for your platform from the <a href="https://odin-lang.org/releases/" target="_blank">releases page</a>, or use the official install script from the Odin repository.</td></tr>
+              <tr><td>Windows</td><td>Download the release zip from the <a href="https://odin-lang.org/releases/" target="_blank">releases page</a> and add the folder to your <code>PATH</code>.</td></tr>
+              <tr><td>macOS</td><td>Same as other platforms: pre-built binary from the releases page.</td></tr>
+            </tbody>
+          </table>
+        </section>
+        <section>
+          <h2>Verify the Toolchain</h2>
+          <pre><code class="language-bash">odin version</code></pre>
+          <div class="code-result">odin version dev-2026-10:84bc3fc21</div>
+          <p>That prints the release name and commit. It is the version this wiki documents.</p>
+        </section>
+
+        <section>
+          <h2>Run Your First Program</h2>
+          <p>Create a file called <code>hello.odin</code>:</p>
+          <pre><code class="language-odin"><span class="token-keyword">package</span> main
+
+<span class="token-keyword">import</span> <span class="token-string">"core:fmt"</span>
+
+main :: proc() {
+    fmt.println(<span class="token-string">"Hello, Odin!"</span>)
+}</code></pre>
+          <p>Run it directly — the compiler handles the rest:</p>
+          <pre><code class="language-bash">odin run hello.odin</code></pre>
+          <div class="code-result">Hello, Odin!</div>
+          <p>When you want a standalone executable, build it instead:</p>
+          <pre><code class="language-bash">odin build hello.odin
+./hello</code></pre>
+          <div class="callout callout-info">
+            <div class="callout-title">run vs build</div>
+            <div><code>odin run</code> compiles and executes in one step — best while iterating. <code>odin build</code> produces a binary you can ship.</div>
+          </div>
+        </section>
+
+        <section>
+          <h2>Where to Next</h2>
+          <ul>
+            <li><a href="language/syntax.html">Core Syntax</a> — packages, imports, variables, control flow.</li>
+            <li><a href="language/builtins.html">Built-in Procedures</a> — the language's built-in functions.</li>
+            <li><a href="stdlib/fmt.html">core:fmt</a> — formatted I/O, the package most programs import first.</li>
+            <li><a href="vendor/overview.html">Vendor Overview</a> — the 54 third-party bindings that ship with Odin.</li>
+          </ul>
+        </section>
+
+        <footer>
+          <p>Odin Wiki &middot; Dark theme for Odin language documentation &middot; Built with inline examples</p>
+        </footer>
+      </main>
+    </div>
+  </div>
+</body>
+</html>
